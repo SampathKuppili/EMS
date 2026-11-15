@@ -186,8 +186,7 @@ export const Dashboard: React.FC = () => {
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
             <span>Welcome, {user?.first_name || user?.full_name}</span>
             <span
-              className={`text-xs px-2.5 py-0.5 rounded-full font-bold border ${
-                isAdmin
+              className={`text-xs px-2.5 py-0.5 rounded-full font-bold border ${isAdmin
                   ? 'bg-purple-50 text-purple-700 border-purple-200'
                   : user?.role === 'HR_MANAGER'
                     ? 'bg-indigo-50 text-indigo-700 border-indigo-200'
@@ -196,7 +195,7 @@ export const Dashboard: React.FC = () => {
                       : isManager
                         ? 'bg-sky-50 text-sky-700 border-sky-200'
                         : 'bg-emerald-50 text-emerald-700 border-emerald-200'
-              }`}
+                }`}
             >
               {user?.role === 'HR_MANAGER'
                 ? 'HR Operations Lead'
@@ -210,27 +209,7 @@ export const Dashboard: React.FC = () => {
             </span>
           </h1>
 
-          <p className="text-xs text-slate-500 mt-1 max-w-2xl">
-            {isHR ? (
-              <>
-                Monitoring <strong className="text-slate-800">{displayTotalEmployees} active team members</strong> across{' '}
-                <strong className="text-slate-800">{displayDepartmentsCount} operating divisions</strong>. Attendance tracking, headcount allocation, and quarterly performance metrics are active.
-              </>
-            ) : isManager ? (
-              <>
-                Leading team operations with <strong className="text-slate-800">{avgAttendance}% annual attendance</strong>. Review team requests and track sprint delivery scores below.
-              </>
-            ) : (
-              <>
-                You have <strong className="text-slate-800 font-semibold">{totalRemainingDays} days</strong> available for {new Date().getFullYear()}
-                {totalCarriedForwardDays > 0 && (
-                  <span className="text-indigo-600 font-medium ml-1">
-                    (including {totalCarriedForwardDays} carried over)
-                  </span>
-                )}.
-              </>
-            )}
-          </p>
+
         </div>
 
         {/* Header Action Buttons */}
@@ -271,22 +250,20 @@ export const Dashboard: React.FC = () => {
         <div className="inline-flex rounded-2xl bg-slate-100 p-1 border border-slate-200/80">
           <button
             onClick={() => setActiveTab('ANALYTICS')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-150 ${
-              activeTab === 'ANALYTICS'
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-150 ${activeTab === 'ANALYTICS'
                 ? 'bg-white text-indigo-700 shadow-xs'
                 : 'text-slate-500 hover:text-slate-900'
-            }`}
+              }`}
           >
             <BarChart3 className="w-4 h-4 text-indigo-600" />
             <span>HR Analytics & Metrics</span>
           </button>
           <button
             onClick={() => setActiveTab('WORKSPACE')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-150 ${
-              activeTab === 'WORKSPACE'
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-150 ${activeTab === 'WORKSPACE'
                 ? 'bg-white text-indigo-700 shadow-xs'
                 : 'text-slate-500 hover:text-slate-900'
-            }`}
+              }`}
           >
             <Clock className="w-4 h-4 text-slate-600" />
             <span>My Time & Attendance</span>

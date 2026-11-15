@@ -116,44 +116,56 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-white border-r border-slate-200/80 select-none">
+    <div className="flex flex-col h-full bg-white border-r border-slate-200/90 select-none">
       {/* Brand Header */}
-      <div className={`h-16 border-b border-slate-100 flex items-center justify-between ${
-        collapsed ? 'px-3 justify-center' : 'px-4'
-      }`}>
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-xs tracking-tight shadow-xs shrink-0">
-            LF
-          </div>
-          {!collapsed && (
-            <div className="min-w-0">
-              <span className="font-bold text-sm text-slate-900 tracking-tight block truncate">LeaveFlow</span>
-              <span className="block text-[10px] text-slate-400 font-medium tracking-wide uppercase truncate">
-                EMS Workspace
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Collapse toggle button on desktop */}
-        {onToggleCollapse && (
+      <div
+        className={`h-16 border-b border-slate-100 flex items-center ${
+          collapsed ? 'justify-center px-2' : 'justify-between px-4'
+        }`}
+      >
+        {collapsed ? (
           <button
             onClick={onToggleCollapse}
-            className={`hidden md:flex p-1.5 rounded-xl text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition ${
-              collapsed ? 'mt-2' : ''
-            }`}
-            title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            className="w-9 h-9 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center font-bold text-xs tracking-tight shadow-xs transition group cursor-pointer"
+            title="Expand sidebar"
+            aria-label="Expand sidebar"
           >
-            {collapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+            <span className="group-hover:hidden transition-all">LF</span>
+            <PanelLeftOpen className="w-4 h-4 hidden group-hover:block transition-all" />
           </button>
+        ) : (
+          <>
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs tracking-tight shadow-xs shrink-0">
+                LF
+              </div>
+              <div className="min-w-0">
+                <span className="font-bold text-sm text-slate-900 tracking-tight block truncate">LeaveFlow</span>
+                <span className="block text-[10px] text-slate-400 font-semibold tracking-wider uppercase truncate">
+                  Enterprise EMS
+                </span>
+              </div>
+            </div>
+
+            {onToggleCollapse && (
+              <button
+                onClick={onToggleCollapse}
+                className="hidden md:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition cursor-pointer"
+                title="Collapse sidebar"
+                aria-label="Collapse sidebar"
+              >
+                <PanelLeftClose className="w-4 h-4" />
+              </button>
+            )}
+          </>
         )}
 
         {/* Mobile close button */}
         {onCloseMobile && (
           <button
             onClick={onCloseMobile}
-            className="md:hidden p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+            className="md:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
+            aria-label="Close menu"
           >
             <X className="w-4 h-4" />
           </button>
@@ -161,13 +173,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Navigation Sections */}
-      <nav className={`flex-1 py-4 space-y-4 overflow-y-auto overflow-x-hidden ${
-        collapsed ? 'px-2' : 'px-3'
-      }`}>
+      <nav
+        className={`flex-1 py-4 space-y-4 overflow-y-auto overflow-x-hidden ${
+          collapsed ? 'px-2' : 'px-3'
+        }`}
+      >
         {sections.map((sec) => (
           <div key={sec.title}>
             {!collapsed ? (
-              <p className="px-3 mb-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              <p className="px-3 mb-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                 {sec.title}
               </p>
             ) : (
@@ -185,21 +199,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     onClick={onCloseMobile}
                     title={collapsed ? item.label : undefined}
                     className={({ isActive }) =>
-                      `relative flex items-center rounded-xl text-xs font-semibold transition duration-150 ${
+                      `relative flex items-center rounded-lg text-xs font-semibold transition duration-150 ${
                         collapsed
                           ? 'justify-center p-2.5'
                           : 'justify-between px-3 py-2'
                       } ${
                         isActive
-                          ? 'bg-indigo-50 text-indigo-700 shadow-2xs font-bold'
+                          ? 'bg-indigo-50/90 text-indigo-700 font-bold border border-indigo-200/60 shadow-2xs'
                           : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                       }`
                     }
                   >
                     <div className={`flex items-center gap-2.5 ${collapsed ? 'justify-center' : ''}`}>
-                      <Icon className={`w-4 h-4 shrink-0 transition ${
-                        item.badge !== undefined && collapsed ? 'text-indigo-600' : 'text-slate-400'
-                      }`} />
+                      <Icon
+                        className={`w-4 h-4 shrink-0 transition ${
+                          item.badge !== undefined && collapsed ? 'text-indigo-600' : 'text-slate-400'
+                        }`}
+                      />
                       {!collapsed && <span>{item.label}</span>}
                     </div>
 
@@ -227,9 +243,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </nav>
 
       {/* User Card at Bottom */}
-      <div className={`p-2.5 border-t border-slate-100 bg-slate-50/50 ${collapsed ? 'flex flex-col items-center' : ''}`}>
+      <div className={`p-2.5 border-t border-slate-100 bg-slate-50/60 ${collapsed ? 'flex flex-col items-center' : ''}`}>
         {!collapsed ? (
-          <div className="p-2 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-center justify-between gap-2">
+          <div className="p-2 rounded-lg bg-white border border-slate-200/80 shadow-2xs flex items-center justify-between gap-2">
             <div className="flex items-center gap-2.5 min-w-0">
               {savedAvatar ? (
                 <img
@@ -247,15 +263,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   {user.full_name}
                 </p>
                 <span className="text-[10px] font-medium text-slate-400 truncate block">
-                  {user.role === 'ADMIN' ? 'Admin / HR' : user.role === 'MANAGER' ? 'Team Lead' : 'Staff'}
+                  {user.role === 'ADMIN' ? 'Administrator' : user.role === 'HR_MANAGER' ? 'HR Manager' : user.role === 'MANAGER' ? 'Team Lead' : 'Staff'}
                 </span>
               </div>
             </div>
 
             <button
               onClick={logout}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition shrink-0"
-              title="Log Out"
+              className="p-1.5 rounded-md text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition shrink-0 cursor-pointer"
+              title="Sign Out"
             >
               <LogOut className="w-4 h-4" />
             </button>
@@ -281,7 +297,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
             <button
               onClick={logout}
-              className="p-1.5 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition"
+              className="p-1.5 rounded-md text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition cursor-pointer"
               title="Sign Out"
             >
               <LogOut className="w-4 h-4" />

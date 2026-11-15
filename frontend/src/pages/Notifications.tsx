@@ -48,8 +48,8 @@ export const Notifications: React.FC = () => {
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-[#1E293B] tracking-tight">System Notifications</h1>
-          <p className="text-xs text-[#64748B] mt-1">
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">System Notifications</h1>
+          <p className="text-xs text-slate-500 mt-0.5">
             Real-time alerts regarding leave approvals, status changes, and team schedules.
           </p>
         </div>
@@ -57,7 +57,7 @@ export const Notifications: React.FC = () => {
         {unreadCount > 0 && (
           <button
             onClick={markAllAsRead}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#E2E8F0] text-[#0F52BA] bg-blue-50 hover:bg-blue-100 text-xs font-semibold transition"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-indigo-600 bg-white hover:bg-slate-50 text-xs font-semibold shadow-xs transition"
           >
             <CheckCheck className="w-3.5 h-3.5" />
             Mark all as read
@@ -67,31 +67,31 @@ export const Notifications: React.FC = () => {
 
       {loading ? (
         <div className="flex justify-center items-center py-20">
-          <div className="w-8 h-8 border-4 border-[#0F52BA] border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : notifications.length === 0 ? (
-        <div className="bg-[#FFFFFF] rounded-3xl p-12 text-center border border-[#E2E8F0] shadow-xs">
-          <Bell className="w-10 h-10 text-[#64748B]/40 mx-auto mb-3" />
-          <p className="text-sm font-bold text-[#1E293B]">No notifications yet</p>
-          <p className="text-xs text-[#64748B] mt-1">
+        <div className="bg-white rounded-xl p-12 text-center border border-slate-200 shadow-xs">
+          <Bell className="w-10 h-10 text-slate-300 mx-auto mb-3" />
+          <p className="text-sm font-semibold text-slate-800">No notifications yet</p>
+          <p className="text-xs text-slate-500 mt-1">
             You will be alerted whenever your requests are reviewed or team actions occur.
           </p>
         </div>
       ) : (
-        <div className="bg-[#FFFFFF] rounded-3xl border border-[#E2E8F0] shadow-xs divide-y divide-[#E2E8F0] overflow-hidden">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-xs divide-y divide-slate-100 overflow-hidden">
           {notifications.map((n) => (
             <div
               key={n.id}
               onClick={() => markAsRead(n.id)}
-              className={`p-4 sm:p-5 flex items-start gap-4 hover:bg-slate-50/70 cursor-pointer transition ${
-                !n.is_read ? 'bg-blue-50/30' : ''
+              className={`p-4 sm:p-4.5 flex items-start gap-4 hover:bg-slate-50/70 cursor-pointer transition ${
+                !n.is_read ? 'bg-indigo-50/30' : ''
               }`}
             >
               <div
-                className={`p-2 rounded-xl shrink-0 mt-0.5 ${
+                className={`p-2 rounded-lg shrink-0 mt-0.5 ${
                   !n.is_read
-                    ? 'bg-[#0F52BA] text-white shadow-xs'
-                    : 'bg-[#F8FAFC] text-[#64748B] border border-[#E2E8F0]'
+                    ? 'bg-indigo-600 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-500 border border-slate-200/60'
                 }`}
               >
                 <Bell className="w-4 h-4" />
@@ -99,8 +99,8 @@ export const Notifications: React.FC = () => {
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-xs font-bold text-[#1E293B] truncate">{n.title}</h3>
-                  <span className="text-[11px] text-[#64748B] shrink-0">
+                  <h3 className="text-xs font-semibold text-slate-900 truncate">{n.title}</h3>
+                  <span className="text-[11px] text-slate-500 shrink-0">
                     {new Date(n.created_at).toLocaleString([], {
                       month: 'short',
                       day: 'numeric',
@@ -109,11 +109,11 @@ export const Notifications: React.FC = () => {
                     })}
                   </span>
                 </div>
-                <p className="text-xs text-[#64748B] mt-1">{n.message}</p>
+                <p className="text-xs text-slate-600 mt-1">{n.message}</p>
               </div>
 
               {!n.is_read && (
-                <span className="w-2 h-2 rounded-full bg-[#0F52BA] shrink-0 self-center" />
+                <span className="w-2 h-2 rounded-full bg-indigo-600 shrink-0 self-center" />
               )}
             </div>
           ))}

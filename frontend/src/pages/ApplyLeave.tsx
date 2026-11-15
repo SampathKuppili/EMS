@@ -118,7 +118,9 @@ export const ApplyLeave: React.FC = () => {
       return;
     }
     if (isInsufficient) {
-      setSubmitError(`Insufficient leave quota. You requested ${previewDuration} days, but only ${remainingAllowance} days are available.`);
+      setSubmitError(
+        `Insufficient leave quota. You requested ${previewDuration} days, but only ${remainingAllowance} days are available.`
+      );
       return;
     }
 
@@ -148,27 +150,28 @@ export const ApplyLeave: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Page Header */}
       <div>
-        <h1 className="text-xl sm:text-2xl font-bold text-[#1E293B] tracking-tight">Request Time Off</h1>
-        <p className="text-xs text-[#64748B] mt-0.5">
+        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Request Time Off</h1>
+        <p className="text-xs text-slate-500 mt-1">
           Submit your application. Working days are computed dynamically, skipping weekend days and company holidays.
         </p>
       </div>
 
       {submitError && (
-        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-[#EF4444] text-xs flex items-center gap-3">
-          <AlertCircle className="w-4 h-4 text-[#EF4444] shrink-0" />
-          <p className="font-medium">{submitError}</p>
+        <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-3">
+          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+          <p className="font-semibold">{submitError}</p>
         </div>
       )}
 
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           {/* Main Form Fields Card */}
-          <div className="lg:col-span-2 bg-[#FFFFFF] rounded-2xl border border-[#E2E8F0] p-6 shadow-xs space-y-6">
+          <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-6">
             {/* Category Selector */}
             <div>
-              <label className="block text-xs font-semibold text-[#1E293B] uppercase tracking-wider mb-2.5">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
                 Leave Category
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -181,21 +184,22 @@ export const ApplyLeave: React.FC = () => {
                     <div
                       key={type.id}
                       onClick={() => setSelectedTypeId(type.id)}
-                      className={`p-3.5 rounded-xl border text-left cursor-pointer transition ${isSelected
-                          ? 'border-[#0F52BA] bg-blue-50/50 ring-1 ring-[#0F52BA]'
-                          : 'border-[#E2E8F0] hover:border-[#0F52BA]/40 bg-[#FFFFFF]'
-                        }`}
+                      className={`p-3.5 rounded-xl border text-left cursor-pointer transition ${
+                        isSelected
+                          ? 'border-indigo-600 bg-indigo-50/50 ring-1 ring-indigo-600 shadow-2xs'
+                          : 'border-slate-200 hover:border-slate-300 bg-white'
+                      }`}
                     >
                       <div className="flex justify-between items-start">
-                        <span className="font-semibold text-xs text-[#1E293B]">{type.name}</span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-100 text-[#64748B]">
+                        <span className="font-bold text-xs text-slate-900">{type.name}</span>
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">
                           {type.code}
                         </span>
                       </div>
-                      <p className="text-[11px] text-[#64748B] mt-1 line-clamp-1">{type.description}</p>
+                      <p className="text-[11px] text-slate-500 mt-1 line-clamp-1">{type.description}</p>
                       <div className="mt-2.5 flex items-center justify-between text-[11px]">
-                        <span className="text-[#64748B]">Available:</span>
-                        <span className={`font-semibold ${remaining > 0 ? 'text-[#1E293B]' : 'text-[#EF4444]'}`}>
+                        <span className="text-slate-400">Available:</span>
+                        <span className={`font-bold ${remaining > 0 ? 'text-slate-900' : 'text-rose-600'}`}>
                           {remaining}d
                         </span>
                       </div>
@@ -206,12 +210,14 @@ export const ApplyLeave: React.FC = () => {
             </div>
 
             {/* Half-Day Switch Card */}
-            <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+            <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
               <div className="flex items-center gap-2.5">
-                <Clock className="w-4 h-4 text-[#64748B]" />
+                <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500">
+                  <Clock className="w-4 h-4" />
+                </div>
                 <div>
-                  <p className="text-xs font-semibold text-[#1E293B]">Half-day leave</p>
-                  <p className="text-[11px] text-[#64748B]">Apply for 0.5 working day on a single date</p>
+                  <p className="text-xs font-bold text-slate-900">Half-day leave</p>
+                  <p className="text-[11px] text-slate-500">Apply for 0.5 working day on a single date</p>
                 </div>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
@@ -221,14 +227,14 @@ export const ApplyLeave: React.FC = () => {
                   onChange={(e) => setIsHalfDay(e.target.checked)}
                   className="sr-only peer"
                 />
-                <div className="w-9 h-5 bg-[#E2E8F0] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#0F52BA]" />
+                <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" />
               </label>
             </div>
 
             {/* Dates Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-[#1E293B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   Start Date
                 </label>
                 <div className="relative">
@@ -237,13 +243,13 @@ export const ApplyLeave: React.FC = () => {
                     required
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#0F52BA] bg-[#FFFFFF] text-[#1E293B]"
+                    className="w-full px-3.5 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 transition shadow-2xs"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#1E293B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   End Date
                 </label>
                 <div className="relative">
@@ -253,7 +259,7 @@ export const ApplyLeave: React.FC = () => {
                     disabled={isHalfDay}
                     value={isHalfDay ? startDate : endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#0F52BA] bg-[#FFFFFF] text-[#1E293B] disabled:bg-slate-100 disabled:text-slate-400"
+                    className="w-full px-3.5 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 disabled:bg-slate-100 disabled:text-slate-400 transition shadow-2xs"
                   />
                 </div>
               </div>
@@ -261,7 +267,7 @@ export const ApplyLeave: React.FC = () => {
 
             {/* Reason */}
             <div>
-              <label className="block text-xs font-semibold text-[#1E293B] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Reason / Remarks
               </label>
               <textarea
@@ -270,52 +276,52 @@ export const ApplyLeave: React.FC = () => {
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="Briefly describe the reason for your time off request..."
-                className="w-full px-3.5 py-2.5 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#0F52BA] bg-[#FFFFFF] text-[#1E293B]"
+                className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 transition shadow-2xs"
               />
             </div>
           </div>
 
           {/* Sticky Summary & Preview Card */}
-          <div className="bg-[#FFFFFF] rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-4 sticky top-20">
-            <h3 className="text-xs font-bold text-[#1E293B] uppercase tracking-wider border-b border-[#E2E8F0] pb-2.5">
+          <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs space-y-4 sticky top-20">
+            <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2.5">
               Request Calculation Preview
             </h3>
 
             {/* Selected category pill */}
             <div className="flex justify-between items-center text-xs">
-              <span className="text-[#64748B]">Category:</span>
-              <span className="font-semibold text-[#1E293B]">{selectedType?.name || 'Not selected'}</span>
+              <span className="text-slate-500">Category:</span>
+              <span className="font-bold text-slate-900">{selectedType?.name || 'Not selected'}</span>
             </div>
 
             {/* Calculated working days */}
-            <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-2">
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-[#64748B]">Working Days:</span>
+                <span className="text-slate-500">Working Days:</span>
                 {isCalculating ? (
-                  <span className="text-xs text-[#64748B] flex items-center gap-1.5">
-                    <span className="w-3 h-3 border border-[#0F52BA] border-t-transparent rounded-full animate-spin" />
+                  <span className="text-xs text-slate-500 flex items-center gap-1.5">
+                    <span className="w-3 h-3 border border-indigo-600 border-t-transparent rounded-full animate-spin" />
                     Calculating...
                   </span>
                 ) : previewError ? (
-                  <span className="text-[#EF4444] font-semibold">{previewError}</span>
+                  <span className="text-rose-600 font-semibold">{previewError}</span>
                 ) : previewDuration !== null ? (
-                  <span className="font-bold text-[#1E293B] text-sm">
+                  <span className="font-bold text-slate-900 text-sm">
                     {previewDuration} day{previewDuration === 1 ? '' : 's'}
                   </span>
                 ) : (
-                  <span className="text-[#64748B]">Select dates</span>
+                  <span className="text-slate-400">Select dates</span>
                 )}
               </div>
 
               {previewDuration !== null && !previewError && (
-                <div className="text-[11px] text-[#64748B] pt-2 border-t border-[#E2E8F0] space-y-1">
+                <div className="text-[11px] text-slate-600 pt-2 border-t border-slate-200 space-y-1">
                   <div className="flex justify-between">
                     <span>Current Quota:</span>
-                    <span className="font-medium text-[#1E293B]">{remainingAllowance}d</span>
+                    <span className="font-semibold text-slate-900">{remainingAllowance}d</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Balance After:</span>
-                    <span className={`font-semibold ${isInsufficient ? 'text-[#EF4444]' : 'text-[#10B981]'}`}>
+                    <span className={`font-bold ${isInsufficient ? 'text-rose-600' : 'text-emerald-600'}`}>
                       {balanceAfter}d
                     </span>
                   </div>
@@ -324,14 +330,14 @@ export const ApplyLeave: React.FC = () => {
             </div>
 
             {isInsufficient && (
-              <div className="p-2.5 rounded-lg bg-red-50 text-[#EF4444] border border-red-200 text-[11px] flex items-start gap-1.5">
-                <ShieldAlert className="w-3.5 h-3.5 text-[#EF4444] shrink-0 mt-0.5" />
+              <div className="p-2.5 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 text-[11px] flex items-start gap-1.5">
+                <ShieldAlert className="w-3.5 h-3.5 text-rose-600 shrink-0 mt-0.5" />
                 <span>Requested duration exceeds your remaining leave allowance for this category.</span>
               </div>
             )}
 
-            <div className="text-[11px] text-[#64748B] flex items-center gap-1.5 pt-1">
-              <Info className="w-3 h-3 text-[#64748B]" />
+            <div className="text-[11px] text-slate-400 flex items-center gap-1.5 pt-1">
+              <Info className="w-3 h-3 text-slate-400 shrink-0" />
               <span>Saturdays, Sundays & official holidays are excluded automatically.</span>
             </div>
 
@@ -340,7 +346,7 @@ export const ApplyLeave: React.FC = () => {
               <button
                 type="submit"
                 disabled={submitting || previewDuration === null || isInsufficient || !!previewError}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold shadow-xs transition active:scale-95 disabled:opacity-40 flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-98 text-white text-xs font-bold shadow-xs transition disabled:opacity-40 flex items-center justify-center gap-2 cursor-pointer"
               >
                 {submitting ? (
                   <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -354,7 +360,7 @@ export const ApplyLeave: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigate('/requests')}
-                className="w-full py-2 px-4 rounded-xl text-[#64748B] hover:text-[#1E293B] text-xs font-medium transition text-center"
+                className="w-full py-2 px-4 rounded-xl text-slate-500 hover:text-slate-800 text-xs font-semibold transition text-center cursor-pointer"
               >
                 Cancel
               </button>

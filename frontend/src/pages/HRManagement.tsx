@@ -377,10 +377,10 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
   return (
     <div className="space-y-6">
       {/* Header Card */}
-      <div className="bg-[#FFFFFF] rounded-2xl border border-[#E2E8F0] p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-[#1E293B] tracking-tight">Admin & HR Management</h1>
-          <p className="text-xs text-[#64748B] mt-1">
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Admin & HR Management</h1>
+          <p className="text-xs text-slate-500 mt-1">
             Department CRUD operations, employee onboarding & department assignments, holiday calendar control, and leave policies.
           </p>
         </div>
@@ -391,7 +391,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
               setActionError(null);
               setShowAllocateModal(true);
             }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#E2E8F0] text-[#0F52BA] bg-blue-50/70 hover:bg-blue-100/70 text-xs font-semibold transition active:scale-95 shadow-2xs"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200 text-indigo-600 bg-blue-50/70 hover:bg-blue-100/70 text-xs font-semibold transition active:scale-95 shadow-2xs"
           >
             <Settings className="w-3.5 h-3.5" />
             <span>Allocate Balance</span>
@@ -402,7 +402,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
               setActionError(null);
               setShowEmpModal(true);
             }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold shadow-xs transition active:scale-95"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-xs transition active:scale-95"
           >
             <UserPlus className="w-3.5 h-3.5" />
             <span>Onboard Employee</span>
@@ -412,9 +412,9 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {/* Action Alerts */}
       {actionSuccess && (
-        <div className="p-4 bg-emerald-50 text-[#10B981] border border-emerald-200 rounded-2xl text-xs flex items-center justify-between animate-in fade-in duration-200">
+        <div className="p-4 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-xl text-xs flex items-center justify-between animate-in fade-in duration-200">
           <div className="flex items-center gap-2.5">
-            <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="font-medium text-emerald-950">{actionSuccess}</span>
           </div>
           <button
@@ -427,9 +427,9 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
       )}
 
       {actionError && (
-        <div className="p-4 bg-red-50 text-[#EF4444] border border-red-200 rounded-2xl text-xs flex items-center justify-between animate-in fade-in duration-200">
+        <div className="p-4 bg-red-50 text-rose-600 border border-red-200 rounded-xl text-xs flex items-center justify-between animate-in fade-in duration-200">
           <div className="flex items-center gap-2.5">
-            <AlertCircle className="w-4 h-4 text-[#EF4444] shrink-0" />
+            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
             <span className="font-medium">{actionError}</span>
           </div>
           <button
@@ -442,20 +442,20 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
       )}
 
       {/* Tabs Navigation Card */}
-      <div className="bg-[#FFFFFF] rounded-2xl border border-[#E2E8F0] p-1.5 shadow-xs flex flex-wrap items-center gap-1">
+      <div className="bg-white rounded-xl border border-slate-200 p-1.5 shadow-xs flex flex-wrap items-center gap-1">
         <button
           onClick={() => setActiveTab('DEPARTMENTS')}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
             activeTab === 'DEPARTMENTS'
-              ? 'bg-[#0F52BA] text-white shadow-xs'
-              : 'text-[#64748B] hover:text-[#1E293B] hover:bg-slate-50'
+              ? 'bg-indigo-600 text-white shadow-xs'
+              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
           }`}
         >
           <Building className="w-4 h-4" />
           <span>Departments</span>
           <span
             className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-              activeTab === 'DEPARTMENTS' ? 'bg-white/20 text-white' : 'bg-slate-100 text-[#64748B]'
+              activeTab === 'DEPARTMENTS' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
             }`}
           >
             {departments.length}
@@ -466,15 +466,15 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
           onClick={() => setActiveTab('EMPLOYEES')}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
             activeTab === 'EMPLOYEES'
-              ? 'bg-[#0F52BA] text-white shadow-xs'
-              : 'text-[#64748B] hover:text-[#1E293B] hover:bg-slate-50'
+              ? 'bg-indigo-600 text-white shadow-xs'
+              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
           }`}
         >
           <Users className="w-4 h-4" />
           <span>Employees & Interns</span>
           <span
             className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-              activeTab === 'EMPLOYEES' ? 'bg-white/20 text-white' : 'bg-slate-100 text-[#64748B]'
+              activeTab === 'EMPLOYEES' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
             }`}
           >
             {employees.length}
@@ -485,15 +485,15 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
           onClick={() => setActiveTab('HOLIDAYS')}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
             activeTab === 'HOLIDAYS'
-              ? 'bg-[#0F52BA] text-white shadow-xs'
-              : 'text-[#64748B] hover:text-[#1E293B] hover:bg-slate-50'
+              ? 'bg-indigo-600 text-white shadow-xs'
+              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
           }`}
         >
           <CalendarDays className="w-4 h-4" />
           <span>Holiday Calendar (CRUD)</span>
           <span
             className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-              activeTab === 'HOLIDAYS' ? 'bg-white/20 text-white' : 'bg-slate-100 text-[#64748B]'
+              activeTab === 'HOLIDAYS' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
             }`}
           >
             {holidays.length}
@@ -504,15 +504,15 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
           onClick={() => setActiveTab('LEAVE_TYPES')}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
             activeTab === 'LEAVE_TYPES'
-              ? 'bg-[#0F52BA] text-white shadow-xs'
-              : 'text-[#64748B] hover:text-[#1E293B] hover:bg-slate-50'
+              ? 'bg-indigo-600 text-white shadow-xs'
+              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
           }`}
         >
           <Briefcase className="w-4 h-4" />
           <span>Leave Policies</span>
           <span
             className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-              activeTab === 'LEAVE_TYPES' ? 'bg-white/20 text-white' : 'bg-slate-100 text-[#64748B]'
+              activeTab === 'LEAVE_TYPES' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
             }`}
           >
             {leaveTypes.length}
@@ -522,8 +522,8 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {loading ? (
         <div className="py-24 flex flex-col items-center justify-center gap-3">
-          <div className="w-7 h-7 border-3 border-[#0F52BA] border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs text-[#64748B] font-medium">Loading organization records...</span>
+          <div className="w-7 h-7 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+          <span className="text-xs text-slate-500 font-medium">Loading organization records...</span>
         </div>
       ) : (
         <>
@@ -531,12 +531,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
           {activeTab === 'DEPARTMENTS' && (
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <p className="text-xs text-[#64748B]">
+            <p className="text-xs text-slate-500">
               Create, edit, and organize corporate departments. Employees and interns are assigned to these departments during onboarding.
             </p>
             <button
               onClick={openCreateDept}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold shadow-xs transition active:scale-95"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-xs transition active:scale-95"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Create Department</span>
@@ -547,46 +547,46 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
             {departments.map((d) => (
               <div
                 key={d.id}
-                className="bg-[#FFFFFF] p-5 rounded-2xl border border-[#E2E8F0] shadow-xs flex flex-col justify-between hover:border-[#0F52BA]/30 transition"
+                className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between hover:border-indigo-600/30 transition"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#0F52BA] flex items-center justify-center font-bold shrink-0">
+                      <div className="w-9 h-9 rounded-xl bg-blue-50 text-indigo-600 flex items-center justify-center font-bold shrink-0">
                         <Building className="w-4 h-4" />
                       </div>
                       <div>
-                        <h3 className="text-sm font-bold text-[#1E293B]">{d.name}</h3>
-                        <span className="text-[10px] font-semibold text-[#64748B]">ID #{d.id}</span>
+                        <h3 className="text-sm font-bold text-slate-900">{d.name}</h3>
+                        <span className="text-[10px] font-semibold text-slate-500">ID #{d.id}</span>
                       </div>
                     </div>
 
-                    <span className="text-[11px] font-bold text-[#1E293B] bg-[#F8FAFC] px-2 py-0.5 rounded-md border border-[#E2E8F0]">
+                    <span className="text-[11px] font-bold text-slate-900 bg-slate-50 px-2 py-0.5 rounded-md border border-slate-200">
                       {d.employee_count ?? 0} {d.employee_count === 1 ? 'member' : 'members'}
                     </span>
                   </div>
 
-                  <p className="text-xs text-[#64748B] mt-3 min-h-[36px] leading-relaxed">
+                  <p className="text-xs text-slate-500 mt-3 min-h-[36px] leading-relaxed">
                     {d.description || 'Corporate software department.'}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3.5 border-t border-[#E2E8F0] flex items-center justify-between">
-                  <span className="text-[10px] text-[#64748B]">
+                <div className="mt-5 pt-3.5 border-t border-slate-200 flex items-center justify-between">
+                  <span className="text-[10px] text-slate-500">
                     Dept Operations
                   </span>
 
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => openEditDept(d)}
-                      className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F52BA] hover:bg-blue-50 transition"
+                      className="p-1.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-blue-50 transition"
                       title="Edit department"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => setItemToDelete({ type: 'DEPT', id: d.id, name: d.name })}
-                      className="p-1.5 rounded-lg text-[#64748B] hover:text-[#EF4444] hover:bg-red-50 transition"
+                      className="p-1.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-red-50 transition"
                       title="Delete department"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -602,15 +602,15 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
       {/* Tab 2: EMPLOYEES & ONBOARDING */}
       {activeTab === 'EMPLOYEES' && (
         <div className="space-y-4">
-          <div className="bg-[#FFFFFF] rounded-2xl border border-[#E2E8F0] p-4 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="relative w-full sm:w-80">
-              <Search className="w-4 h-4 text-[#64748B] absolute left-3 top-2.5" />
+              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
               <input
                 type="text"
                 placeholder="Search staff by name, email, department..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] bg-[#FFFFFF] text-[#1E293B]"
+                className="w-full pl-9 pr-3.5 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white text-slate-900"
               />
             </div>
 
@@ -621,8 +621,8 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   onClick={() => setRoleFilter(r)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition shrink-0 ${
                     roleFilter === r
-                      ? 'bg-[#0F52BA] text-white shadow-xs'
-                      : 'text-[#64748B] hover:bg-slate-100'
+                      ? 'bg-indigo-600 text-white shadow-xs'
+                      : 'text-slate-500 hover:bg-slate-100'
                   }`}
                 >
                   {r === 'ALL'
@@ -641,10 +641,10 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
             </div>
           </div>
 
-          <div className="bg-[#FFFFFF] rounded-2xl border border-[#E2E8F0] shadow-xs overflow-hidden">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-[#F8FAFC] border-b border-[#E2E8F0] text-[#64748B] font-bold uppercase tracking-wider text-[11px]">
+                <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[11px]">
                   <tr>
                     <th className="py-3.5 px-4">Employee</th>
                     <th className="py-3.5 px-4">Role</th>
@@ -654,10 +654,10 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     <th className="py-3.5 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E2E8F0]">
+                <tbody className="divide-y divide-slate-200">
                   {filteredEmployees.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="py-12 text-center text-[#64748B]">
+                      <td colSpan={6} className="py-12 text-center text-slate-500">
                         No team members found matching the search criteria.
                       </td>
                     </tr>
@@ -666,12 +666,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                       <tr key={emp.id} className="hover:bg-slate-50/60 transition">
                         <td className="py-3.5 px-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center font-bold text-[#0F52BA] text-xs shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center font-bold text-indigo-600 text-xs shrink-0">
                               {emp.first_name ? emp.first_name[0] : emp.email[0].toUpperCase()}
                             </div>
                             <div>
-                              <p className="font-bold text-[#1E293B]">{emp.full_name}</p>
-                              <p className="text-[11px] text-[#64748B]">{emp.email}</p>
+                              <p className="font-bold text-slate-900">{emp.full_name}</p>
+                              <p className="text-[11px] text-slate-500">{emp.email}</p>
                             </div>
                           </div>
                         </td>
@@ -679,29 +679,29 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                           <span
                             className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
                               emp.role === 'ADMIN'
-                                ? 'bg-blue-50 text-[#0F52BA] border-blue-200'
+                                ? 'bg-blue-50 text-indigo-600 border-blue-200'
                                 : emp.role === 'HR_MANAGER'
                                 ? 'bg-indigo-50 text-indigo-700 border-indigo-200'
                                 : emp.role === 'INTERN'
-                                ? 'bg-amber-50 text-[#F59E0B] border-amber-200'
+                                ? 'bg-amber-50 text-amber-600 border-amber-200'
                                 : emp.role === 'MANAGER'
-                                ? 'bg-blue-50 text-[#2563EB] border-blue-200'
-                                : 'bg-emerald-50 text-[#10B981] border-emerald-200'
+                                ? 'bg-blue-50 text-indigo-700 border-blue-200'
+                                : 'bg-emerald-50 text-emerald-600 border-emerald-200'
                             }`}
                           >
                             {emp.role === 'HR_MANAGER' ? 'HR Manager' : emp.role}
                           </span>
                         </td>
-                        <td className="py-3.5 px-4 font-medium text-[#1E293B]">
+                        <td className="py-3.5 px-4 font-medium text-slate-900">
                           <span className="inline-flex items-center gap-1">
-                            <Building className="w-3.5 h-3.5 text-[#64748B] shrink-0" />
+                            <Building className="w-3.5 h-3.5 text-slate-500 shrink-0" />
                             {emp.profile?.department_name || 'Unassigned'}
                           </span>
                         </td>
-                        <td className="py-3.5 px-4 text-[#64748B] font-medium">
+                        <td className="py-3.5 px-4 text-slate-500 font-medium">
                           {emp.profile?.designation || 'Staff'}
                         </td>
-                        <td className="py-3.5 px-4 text-[#1E293B] font-medium">
+                        <td className="py-3.5 px-4 text-slate-900 font-medium">
                           {emp.profile?.manager_name || '—'}
                         </td>
                         <td className="py-3.5 px-4 text-right">
@@ -710,7 +710,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                               setAllocEmpId(emp.id);
                               setShowAllocateModal(true);
                             }}
-                            className="text-xs text-[#0F52BA] hover:text-[#2563EB] font-bold px-2 py-1 rounded-lg hover:bg-blue-50 transition"
+                            className="text-xs text-indigo-600 hover:text-indigo-700 font-bold px-2 py-1 rounded-lg hover:bg-blue-50 transition"
                           >
                             Allocate Quota
                           </button>
@@ -729,12 +729,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
       {activeTab === 'HOLIDAYS' && (
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <p className="text-xs text-[#64748B]">
+            <p className="text-xs text-slate-500">
               Manage enterprise public holidays. Days scheduled here are automatically excluded from leave calculations and weekend counts.
             </p>
             <button
               onClick={openCreateHoliday}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold shadow-xs transition active:scale-95"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-xs transition active:scale-95"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Schedule Holiday</span>
@@ -751,11 +751,11 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
               return (
                 <div
                   key={h.id}
-                  className="bg-[#FFFFFF] p-4.5 rounded-2xl border border-[#E2E8F0] shadow-xs flex items-center justify-between gap-4"
+                  className="bg-white p-4.5 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 text-[#0F52BA] font-bold flex flex-col items-center justify-center shrink-0">
-                      <span className="text-[10px] uppercase font-bold text-[#0F52BA]">
+                    <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 text-indigo-600 font-bold flex flex-col items-center justify-center shrink-0">
+                      <span className="text-[10px] uppercase font-bold text-indigo-600">
                         {monthStr}
                       </span>
                       <span className="text-base font-black leading-none mt-0.5">
@@ -764,27 +764,27 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     </div>
 
                     <div>
-                      <p className="font-bold text-[#1E293B] text-xs sm:text-sm">{h.name}</p>
-                      <p className="text-[#64748B] text-[11px] mt-0.5">
+                      <p className="font-bold text-slate-900 text-xs sm:text-sm">{h.name}</p>
+                      <p className="text-slate-500 text-[11px] mt-0.5">
                         {weekdayStr} • {h.description || 'Public company holiday'}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-semibold text-[#1E293B] bg-[#F8FAFC] px-2 py-1 rounded-lg border border-[#E2E8F0]">
+                    <span className="font-mono text-xs font-semibold text-slate-900 bg-slate-50 px-2 py-1 rounded-lg border border-slate-200">
                       {h.date}
                     </span>
                     <button
                       onClick={() => openEditHoliday(h)}
-                      className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F52BA] hover:bg-blue-50 transition"
+                      className="p-1.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-blue-50 transition"
                       title="Edit holiday"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => setItemToDelete({ type: 'HOLIDAY', id: h.id, name: h.name })}
-                      className="p-1.5 rounded-lg text-[#64748B] hover:text-[#EF4444] hover:bg-red-50 transition"
+                      className="p-1.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-red-50 transition"
                       title="Delete holiday"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -802,13 +802,13 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
             <div>
-              <p className="text-xs text-[#64748B]">
+              <p className="text-xs text-slate-500">
                 Configure corporate leave categories, annual allowances, paid status, and approval workflows.
               </p>
             </div>
             <button
               onClick={openCreateLeaveType}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold shadow-xs transition active:scale-95 self-start sm:self-auto"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-xs transition active:scale-95 self-start sm:self-auto"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Create Leave Policy</span>
@@ -817,53 +817,53 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="bg-[#FFFFFF] p-3.5 rounded-xl border border-[#E2E8F0] shadow-xs">
-              <span className="text-[11px] font-semibold text-[#64748B] block">Total Categories</span>
-              <span className="text-lg font-bold text-[#1E293B] mt-0.5 block">{leaveTypes.length}</span>
+            <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+              <span className="text-[11px] font-semibold text-slate-500 block">Total Categories</span>
+              <span className="text-lg font-bold text-slate-900 mt-0.5 block">{leaveTypes.length}</span>
             </div>
-            <div className="bg-[#FFFFFF] p-3.5 rounded-xl border border-[#E2E8F0] shadow-xs">
-              <span className="text-[11px] font-semibold text-[#64748B] block">Active Policies</span>
-              <span className="text-lg font-bold text-[#10B981] mt-0.5 block">
+            <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+              <span className="text-[11px] font-semibold text-slate-500 block">Active Policies</span>
+              <span className="text-lg font-bold text-emerald-600 mt-0.5 block">
                 {leaveTypes.filter((lt) => lt.is_active).length}
               </span>
             </div>
-            <div className="bg-[#FFFFFF] p-3.5 rounded-xl border border-[#E2E8F0] shadow-xs">
-              <span className="text-[11px] font-semibold text-[#64748B] block">Paid Leave Types</span>
-              <span className="text-lg font-bold text-[#0F52BA] mt-0.5 block">
+            <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+              <span className="text-[11px] font-semibold text-slate-500 block">Paid Leave Types</span>
+              <span className="text-lg font-bold text-indigo-600 mt-0.5 block">
                 {leaveTypes.filter((lt) => lt.is_paid).length}
               </span>
             </div>
-            <div className="bg-[#FFFFFF] p-3.5 rounded-xl border border-[#E2E8F0] shadow-xs">
-              <span className="text-[11px] font-semibold text-[#64748B] block">Requires Approval</span>
-              <span className="text-lg font-bold text-[#F59E0B] mt-0.5 block">
+            <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+              <span className="text-[11px] font-semibold text-slate-500 block">Requires Approval</span>
+              <span className="text-lg font-bold text-amber-600 mt-0.5 block">
                 {leaveTypes.filter((lt) => lt.requires_approval).length}
               </span>
             </div>
           </div>
 
           {/* Search & Filter Controls */}
-          <div className="bg-[#FFFFFF] p-3 rounded-xl border border-[#E2E8F0] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="relative w-full sm:w-72">
-              <Search className="w-4 h-4 text-[#64748B] absolute left-3 top-2.5" />
+              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
               <input
                 type="text"
                 placeholder="Search category name, code, or description..."
                 value={leaveTypeSearch}
                 onChange={(e) => setLeaveTypeSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 text-xs border border-[#E2E8F0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                className="w-full pl-9 pr-3 py-1.5 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
               />
             </div>
 
             <div className="flex items-center gap-1.5 w-full sm:w-auto">
-              <span className="text-xs text-[#64748B] font-medium mr-1 hidden sm:inline">Status:</span>
+              <span className="text-xs text-slate-500 font-medium mr-1 hidden sm:inline">Status:</span>
               {(['ALL', 'ACTIVE', 'INACTIVE'] as const).map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setLeaveTypeFilter(filter)}
                   className={`px-3 py-1 rounded-lg text-xs font-semibold transition ${
                     leaveTypeFilter === filter
-                      ? 'bg-[#0F52BA] text-white shadow-2xs'
-                      : 'bg-slate-100 text-[#64748B] hover:text-[#1E293B]'
+                      ? 'bg-indigo-600 text-white shadow-2xs'
+                      : 'bg-slate-100 text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   {filter === 'ALL' ? 'All' : filter === 'ACTIVE' ? 'Active' : 'Inactive'}
@@ -891,18 +891,18 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
               .map((lt) => (
                 <div
                   key={lt.id}
-                  className={`bg-[#FFFFFF] p-5 rounded-2xl border transition shadow-xs flex flex-col justify-between ${
-                    lt.is_active ? 'border-[#E2E8F0] hover:border-blue-200' : 'border-slate-200 bg-slate-50/50 opacity-90'
+                  className={`bg-white p-5 rounded-xl border transition shadow-xs flex flex-col justify-between ${
+                    lt.is_active ? 'border-slate-200 hover:border-blue-200' : 'border-slate-200 bg-slate-50/50 opacity-90'
                   }`}
                 >
                   <div>
                     {/* Top Row: Title, Code, & Management Actions */}
                     <div className="flex justify-between items-start gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-[#0F52BA] bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-lg">
+                        <span className="text-xs font-mono font-bold text-indigo-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-lg">
                           {lt.code}
                         </span>
-                        <h3 className="font-bold text-sm text-[#1E293B] tracking-tight">{lt.name}</h3>
+                        <h3 className="font-bold text-sm text-slate-900 tracking-tight">{lt.name}</h3>
                       </div>
 
                       <div className="flex items-center gap-1">
@@ -910,8 +910,8 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                           onClick={() => handleToggleActiveLeaveType(lt)}
                           className={`p-1.5 rounded-lg transition ${
                             lt.is_active
-                              ? 'text-[#10B981] hover:bg-emerald-50'
-                              : 'text-[#64748B] hover:text-[#10B981] hover:bg-slate-100'
+                              ? 'text-emerald-600 hover:bg-emerald-50'
+                              : 'text-slate-500 hover:text-emerald-600 hover:bg-slate-100'
                           }`}
                           title={lt.is_active ? 'Deactivate policy' : 'Activate policy'}
                         >
@@ -920,7 +920,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
                         <button
                           onClick={() => openEditLeaveType(lt)}
-                          className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F52BA] hover:bg-blue-50 transition"
+                          className="p-1.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-blue-50 transition"
                           title="Edit policy details"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -928,7 +928,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
                         <button
                           onClick={() => setItemToDelete({ type: 'LEAVE_TYPE', id: lt.id, name: lt.name })}
-                          className="p-1.5 rounded-lg text-[#64748B] hover:text-[#EF4444] hover:bg-red-50 transition"
+                          className="p-1.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-red-50 transition"
                           title="Delete policy"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -936,7 +936,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                       </div>
                     </div>
 
-                    <p className="text-xs text-[#64748B] mt-2.5 min-h-[38px] leading-relaxed line-clamp-2">
+                    <p className="text-xs text-slate-500 mt-2.5 min-h-[38px] leading-relaxed line-clamp-2">
                       {lt.description || 'No detailed policy description provided.'}
                     </p>
 
@@ -945,8 +945,8 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                       <span
                         className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                           lt.is_active
-                            ? 'bg-emerald-50 text-[#10B981] border-emerald-200'
-                            : 'bg-slate-100 text-[#64748B] border-slate-200'
+                            ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                            : 'bg-slate-100 text-slate-500 border-slate-200'
                         }`}
                       >
                         {lt.is_active ? 'Active' : 'Deactivated'}
@@ -955,8 +955,8 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                       <span
                         className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                           lt.is_paid
-                            ? 'bg-emerald-50 text-[#10B981] border-emerald-200'
-                            : 'bg-amber-50 text-[#F59E0B] border-amber-200'
+                            ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                            : 'bg-amber-50 text-amber-600 border-amber-200'
                         }`}
                       >
                         {lt.is_paid ? 'Paid' : 'Unpaid'}
@@ -965,8 +965,8 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                       <span
                         className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                           lt.requires_approval
-                            ? 'bg-blue-50 text-[#0F52BA] border-blue-200'
-                            : 'bg-emerald-50 text-[#10B981] border-emerald-200'
+                            ? 'bg-blue-50 text-indigo-600 border-blue-200'
+                            : 'bg-emerald-50 text-emerald-600 border-emerald-200'
                         }`}
                       >
                         {lt.requires_approval ? 'Approval Required' : 'Auto-Approved'}
@@ -975,17 +975,17 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   </div>
 
                   {/* Card Bottom: Allowance & Quick Edit */}
-                  <div className="mt-4 pt-3 border-t border-[#E2E8F0] flex items-center justify-between">
+                  <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] text-[#64748B] block font-medium">Annual Quota</span>
-                      <span className="text-sm font-bold text-[#1E293B]">
-                        {lt.annual_allowance} <span className="text-xs font-normal text-[#64748B]">days/yr</span>
+                      <span className="text-[10px] text-slate-500 block font-medium">Annual Quota</span>
+                      <span className="text-sm font-bold text-slate-900">
+                        {lt.annual_allowance} <span className="text-xs font-normal text-slate-500">days/yr</span>
                       </span>
                     </div>
 
                     <button
                       onClick={() => openEditLeaveType(lt)}
-                      className="px-2.5 py-1 text-xs font-semibold text-[#0F52BA] hover:text-[#2563EB] hover:bg-blue-50 rounded-lg transition"
+                      className="px-2.5 py-1 text-xs font-semibold text-indigo-600 hover:text-indigo-700 hover:bg-blue-50 rounded-lg transition"
                     >
                       Configure &rarr;
                     </button>
@@ -995,10 +995,10 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
           </div>
 
           {leaveTypes.length === 0 && (
-            <div className="p-8 text-center bg-[#FFFFFF] rounded-2xl border border-[#E2E8F0]">
-              <Briefcase className="w-8 h-8 text-[#64748B] mx-auto mb-2 opacity-50" />
-              <p className="text-xs font-semibold text-[#1E293B]">No leave policies defined yet.</p>
-              <p className="text-[11px] text-[#64748B] mt-1">
+            <div className="p-8 text-center bg-white rounded-xl border border-slate-200">
+              <Briefcase className="w-8 h-8 text-slate-500 mx-auto mb-2 opacity-50" />
+              <p className="text-xs font-semibold text-slate-900">No leave policies defined yet.</p>
+              <p className="text-[11px] text-slate-500 mt-1">
                 Click "Create Leave Policy" to establish vacation, sick leave, or company allowances.
               </p>
             </div>
@@ -1010,20 +1010,20 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {/* DEPARTMENT MODAL (Create & Edit) */}
       {showDeptModal && (
-        <div className="fixed inset-0 z-50 bg-[#1E293B]/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] rounded-2xl max-w-md w-full p-6 shadow-xl border border-[#E2E8F0] animate-in fade-in zoom-in-95 duration-150">
-            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#1E293B]">
+                <h3 className="text-base font-bold text-slate-900">
                   {editingDept ? 'Edit Department' : 'Create New Department'}
                 </h3>
-                <p className="text-xs text-[#64748B] mt-0.5">
+                <p className="text-xs text-slate-500 mt-0.5">
                   Admin CRUD: Manage company software engineering & operational departments.
                 </p>
               </div>
               <button
                 onClick={() => setShowDeptModal(false)}
-                className="p-1 rounded-lg text-[#64748B] hover:text-[#1E293B] hover:bg-slate-100"
+                className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1031,7 +1031,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
             <form onSubmit={handleSaveDepartment} className="mt-4 space-y-3.5">
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Department Name
                 </label>
                 <input
@@ -1040,12 +1040,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   placeholder="e.g. Quality Assurance"
                   value={deptName}
                   onChange={(e) => setDeptName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Description
                 </label>
                 <textarea
@@ -1053,21 +1053,21 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   placeholder="Responsibilities, scope, and technical domain..."
                   value={deptDescription}
                   onChange={(e) => setDeptDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] resize-none text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 resize-none text-slate-900"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-[#E2E8F0]">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowDeptModal(false)}
-                  className="px-4 py-2 border border-[#E2E8F0] rounded-xl text-xs font-semibold text-[#64748B] hover:bg-slate-50 transition"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
                 >
                   {editingDept ? 'Update Department' : 'Create Department'}
                 </button>
@@ -1079,20 +1079,20 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {/* HOLIDAY MODAL (Create & Edit) */}
       {showHolidayModal && (
-        <div className="fixed inset-0 z-50 bg-[#1E293B]/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] rounded-2xl max-w-md w-full p-6 shadow-xl border border-[#E2E8F0] animate-in fade-in zoom-in-95 duration-150">
-            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#1E293B]">
+                <h3 className="text-base font-bold text-slate-900">
                   {editingHoliday ? 'Edit Corporate Holiday' : 'Schedule Public Holiday'}
                 </h3>
-                <p className="text-xs text-[#64748B] mt-0.5">
+                <p className="text-xs text-slate-500 mt-0.5">
                   Holidays are automatically deducted from leave working day spans.
                 </p>
               </div>
               <button
                 onClick={() => setShowHolidayModal(false)}
-                className="p-1 rounded-lg text-[#64748B] hover:text-[#1E293B] hover:bg-slate-100"
+                className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1100,7 +1100,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
             <form onSubmit={handleSaveHoliday} className="mt-4 space-y-3.5">
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Holiday Name
                 </label>
                 <input
@@ -1109,12 +1109,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   placeholder="e.g. Thanksgiving Day"
                   value={holidayName}
                   onChange={(e) => setHolidayName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Date
                 </label>
                 <input
@@ -1122,12 +1122,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   required
                   value={holidayDate}
                   onChange={(e) => setHolidayDate(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] bg-[#FFFFFF] text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white text-slate-900"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Description
                 </label>
                 <input
@@ -1135,21 +1135,21 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   placeholder="e.g. Official national public holiday"
                   value={holidayDescription}
                   onChange={(e) => setHolidayDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-[#E2E8F0]">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowHolidayModal(false)}
-                  className="px-4 py-2 border border-[#E2E8F0] rounded-xl text-xs font-semibold text-[#64748B] hover:bg-slate-50 transition"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
                 >
                   {editingHoliday ? 'Update Holiday' : 'Save Holiday'}
                 </button>
@@ -1161,18 +1161,18 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {/* EMPLOYEE ONBOARDING MODAL */}
       {showEmpModal && (
-        <div className="fixed inset-0 z-50 bg-[#1E293B]/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] rounded-2xl max-w-lg w-full p-6 shadow-xl border border-[#E2E8F0] animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-lg w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#1E293B]">Employee & Intern Onboarding</h3>
-                <p className="text-xs text-[#64748B] mt-0.5">
+                <h3 className="text-base font-bold text-slate-900">Employee & Intern Onboarding</h3>
+                <p className="text-xs text-slate-500 mt-0.5">
                   Input personal details and assign to a department and reporting manager.
                 </p>
               </div>
               <button
                 onClick={() => setShowEmpModal(false)}
-                className="p-1 rounded-lg text-[#64748B] hover:text-[#1E293B] hover:bg-slate-100"
+                className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1181,7 +1181,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
             <form onSubmit={handleCreateEmployee} className="mt-4 space-y-3.5">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     First Name
                   </label>
                   <input
@@ -1190,11 +1190,11 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     value={empFirstName}
                     onChange={(e) => setEmpFirstName(e.target.value)}
                     placeholder="Leo"
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Last Name
                   </label>
                   <input
@@ -1203,13 +1203,13 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     value={empLastName}
                     onChange={(e) => setEmpLastName(e.target.value)}
                     placeholder="Chen"
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Work Email Address
                 </label>
                 <input
@@ -1218,19 +1218,19 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   placeholder="leo.chen@ems.local"
                   value={empEmail}
                   onChange={(e) => setEmpEmail(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Organizational Role
                   </label>
                   <select
                     value={empRole}
                     onChange={(e: any) => setEmpRole(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl bg-[#FFFFFF] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#0F52BA]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                   >
                     <option value="INTERN">Intern (Software Intern)</option>
                     <option value="EMPLOYEE">Employee (Full-Time Engineer)</option>
@@ -1241,13 +1241,13 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Assign Department
                   </label>
                   <select
                     value={empDeptId}
                     onChange={(e) => setEmpDeptId(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl bg-[#FFFFFF] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#0F52BA]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                   >
                     <option value="">Select Department...</option>
                     {departments.map((d) => (
@@ -1261,7 +1261,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Job Designation
                   </label>
                   <input
@@ -1269,18 +1269,18 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     placeholder="e.g. Frontend Intern / Senior Engineer"
                     value={empDesignation}
                     onChange={(e) => setEmpDesignation(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Reporting Manager / Mentor
                   </label>
                   <select
                     value={empManagerId}
                     onChange={(e) => setEmpManagerId(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl bg-[#FFFFFF] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#0F52BA]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                   >
                     <option value="">None (Reports to Leadership)</option>
                     {employees
@@ -1296,19 +1296,19 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Joining Date
                   </label>
                   <input
                     type="date"
                     value={empJoiningDate}
                     onChange={(e) => setEmpJoiningDate(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] bg-[#FFFFFF] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white text-slate-900"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Direct Phone Number
                   </label>
                   <input
@@ -1316,13 +1316,13 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     placeholder="+1 555-0199"
                     value={empPhone}
                     onChange={(e) => setEmpPhone(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Default Access Password
                 </label>
                 <input
@@ -1330,21 +1330,21 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   required
                   value={empPassword}
                   onChange={(e) => setEmpPassword(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] font-mono text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 font-mono text-slate-900"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-[#E2E8F0]">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowEmpModal(false)}
-                  className="px-4 py-2 border border-[#E2E8F0] rounded-xl text-xs font-semibold text-[#64748B] hover:bg-slate-50 transition"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
                 >
                   Complete Onboarding
                 </button>
@@ -1356,18 +1356,18 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {/* ALLOCATE BALANCE MODAL (With Carry-Forward) */}
       {showAllocateModal && (
-        <div className="fixed inset-0 z-50 bg-[#1E293B]/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] rounded-2xl max-w-md w-full p-6 shadow-xl border border-[#E2E8F0] animate-in fade-in zoom-in-95 duration-150">
-            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#1E293B]">Allocate Quota & Carry-Forward</h3>
-                <p className="text-xs text-[#64748B] mt-0.5">
+                <h3 className="text-base font-bold text-slate-900">Allocate Quota & Carry-Forward</h3>
+                <p className="text-xs text-slate-500 mt-0.5">
                   Set annual fresh allowance and carry-forward days for an employee.
                 </p>
               </div>
               <button
                 onClick={() => setShowAllocateModal(false)}
-                className="p-1 rounded-lg text-[#64748B] hover:text-[#1E293B] hover:bg-slate-100"
+                className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1375,14 +1375,14 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
             <form onSubmit={handleAllocateBalance} className="mt-4 space-y-3.5">
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Employee
                 </label>
                 <select
                   required
                   value={allocEmpId}
                   onChange={(e) => setAllocEmpId(Number(e.target.value))}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl bg-[#FFFFFF] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#0F52BA]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                 >
                   <option value="">Select Employee...</option>
                   {employees.map((e) => (
@@ -1394,14 +1394,14 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Leave Category
                 </label>
                 <select
                   required
                   value={allocTypeId}
                   onChange={(e) => setAllocTypeId(Number(e.target.value))}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl bg-[#FFFFFF] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#0F52BA]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                 >
                   <option value="">Select Category...</option>
                   {leaveTypes.map((t) => (
@@ -1414,7 +1414,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Annual Quota (Days)
                   </label>
                   <input
@@ -1423,12 +1423,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     required
                     value={allocDays}
                     onChange={(e) => setAllocDays(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Carry-Forward (Days)
                   </label>
                   <input
@@ -1437,22 +1437,22 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     required
                     value={allocCarryForward}
                     onChange={(e) => setAllocCarryForward(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
                 </div>
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-[#E2E8F0]">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowAllocateModal(false)}
-                  className="px-4 py-2 border border-[#E2E8F0] rounded-xl text-xs font-semibold text-[#64748B] hover:bg-slate-50 transition"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
                 >
                   Save Allocation
                 </button>
@@ -1464,20 +1464,20 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {/* LEAVE TYPE MODAL (Create & Edit) */}
       {showTypeModal && (
-        <div className="fixed inset-0 z-50 bg-[#1E293B]/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] rounded-2xl max-w-lg w-full p-6 shadow-xl border border-[#E2E8F0] animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-lg w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#1E293B]">
+                <h3 className="text-base font-bold text-slate-900">
                   {editingType ? 'Edit Leave Policy' : 'Create New Leave Policy'}
                 </h3>
-                <p className="text-xs text-[#64748B] mt-0.5">
+                <p className="text-xs text-slate-500 mt-0.5">
                   Configure corporate entitlement quota, approval workflow, and availability.
                 </p>
               </div>
               <button
                 onClick={() => setShowTypeModal(false)}
-                className="p-1 rounded-lg text-[#64748B] hover:text-[#1E293B] hover:bg-slate-100"
+                className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1485,7 +1485,7 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
             <form onSubmit={handleSaveLeaveType} className="mt-4 space-y-3.5">
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Policy Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1494,13 +1494,13 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   placeholder="e.g. Parental / Maternity Leave"
                   value={typeName}
                   onChange={(e) => setTypeName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Policy Code <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -1509,12 +1509,12 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     placeholder="e.g. PL"
                     value={typeCode}
                     onChange={(e) => setTypeCode(e.target.value.toUpperCase())}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl uppercase font-mono font-bold focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl uppercase font-mono font-bold focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
-                  <span className="text-[10px] text-[#64748B] mt-0.5 block">Short unique identifier (e.g. CL, SL, WFH)</span>
+                  <span className="text-[10px] text-slate-500 mt-0.5 block">Short unique identifier (e.g. CL, SL, WFH)</span>
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                     Annual Quota (Days) <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -1524,14 +1524,14 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     required
                     value={typeAllowance}
                     onChange={(e) => setTypeAllowance(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B]"
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900"
                   />
-                  <span className="text-[10px] text-[#64748B] mt-0.5 block">Default days granted per calendar year</span>
+                  <span className="text-[10px] text-slate-500 mt-0.5 block">Default days granted per calendar year</span>
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-[#1E293B] uppercase mb-1">
+                <label className="block text-[11px] font-bold text-slate-900 uppercase mb-1">
                   Description & Guidelines
                 </label>
                 <textarea
@@ -1539,21 +1539,21 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   placeholder="Explain policy guidelines, eligibility requirements, documentation rules..."
                   value={typeDescription}
                   onChange={(e) => setTypeDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-[#E2E8F0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F52BA] text-[#1E293B] resize-none"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 text-slate-900 resize-none"
                 />
               </div>
 
-              <div className="space-y-2 pt-2 border-t border-[#E2E8F0]">
+              <div className="space-y-2 pt-2 border-t border-slate-200">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={typeIsPaid}
                     onChange={(e) => setTypeIsPaid(e.target.checked)}
-                    className="rounded text-[#0F52BA] focus:ring-[#0F52BA] w-4 h-4"
+                    className="rounded text-indigo-600 focus:ring-indigo-600 w-4 h-4"
                   />
                   <div>
-                    <span className="text-xs text-[#1E293B] font-semibold block">Paid Leave Policy</span>
-                    <span className="text-[11px] text-[#64748B] block">
+                    <span className="text-xs text-slate-900 font-semibold block">Paid Leave Policy</span>
+                    <span className="text-[11px] text-slate-500 block">
                       Employees receive normal salary remuneration during this leave span.
                     </span>
                   </div>
@@ -1564,11 +1564,11 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     type="checkbox"
                     checked={typeRequiresApproval}
                     onChange={(e) => setTypeRequiresApproval(e.target.checked)}
-                    className="rounded text-[#0F52BA] focus:ring-[#0F52BA] w-4 h-4"
+                    className="rounded text-indigo-600 focus:ring-indigo-600 w-4 h-4"
                   />
                   <div>
-                    <span className="text-xs text-[#1E293B] font-semibold block">Requires Manager Review & Approval</span>
-                    <span className="text-[11px] text-[#64748B] block">
+                    <span className="text-xs text-slate-900 font-semibold block">Requires Manager Review & Approval</span>
+                    <span className="text-[11px] text-slate-500 block">
                       When disabled, submitted requests are auto-approved and deduct balances immediately.
                     </span>
                   </div>
@@ -1579,28 +1579,28 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                     type="checkbox"
                     checked={typeIsActive}
                     onChange={(e) => setTypeIsActive(e.target.checked)}
-                    className="rounded text-[#0F52BA] focus:ring-[#0F52BA] w-4 h-4"
+                    className="rounded text-indigo-600 focus:ring-indigo-600 w-4 h-4"
                   />
                   <div>
-                    <span className="text-xs text-[#1E293B] font-semibold block">Active Policy Status</span>
-                    <span className="text-[11px] text-[#64748B] block">
+                    <span className="text-xs text-slate-900 font-semibold block">Active Policy Status</span>
+                    <span className="text-[11px] text-slate-500 block">
                       When enabled, this category appears in employee leave application dropdowns.
                     </span>
                   </div>
                 </label>
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-[#E2E8F0]">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setShowTypeModal(false)}
-                  className="px-4 py-2 border border-[#E2E8F0] rounded-xl text-xs font-semibold text-[#64748B] hover:bg-slate-50 transition"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#0F52BA] hover:bg-[#2563EB] text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
                 >
                   {editingType ? 'Update Leave Policy' : 'Create Leave Policy'}
                 </button>
@@ -1612,14 +1612,14 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
 
       {/* DELETE CONFIRMATION DIALOG */}
       {itemToDelete && (
-        <div className="fixed inset-0 z-50 bg-[#1E293B]/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] rounded-2xl max-w-sm w-full p-6 shadow-xl border border-[#E2E8F0] space-y-4 animate-in fade-in zoom-in-95 duration-150">
-            <div className="w-10 h-10 rounded-full bg-red-50 text-[#EF4444] flex items-center justify-center mx-auto">
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-sm w-full p-6 shadow-xl border border-slate-200 space-y-4 animate-in fade-in zoom-in-95 duration-150">
+            <div className="w-10 h-10 rounded-full bg-red-50 text-rose-600 flex items-center justify-center mx-auto">
               <Trash2 className="w-5 h-5" />
             </div>
 
             <div className="text-center">
-              <h3 className="text-base font-bold text-[#1E293B]">
+              <h3 className="text-base font-bold text-slate-900">
                 Delete{' '}
                 {itemToDelete.type === 'DEPT'
                   ? 'Department'
@@ -1628,8 +1628,8 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
                   : 'Leave Policy'}
                 ?
               </h3>
-              <p className="text-xs text-[#64748B] mt-1.5 leading-relaxed">
-                Are you sure you want to delete <strong className="text-[#1E293B]">"{itemToDelete.name}"</strong>?
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Are you sure you want to delete <strong className="text-slate-900">"{itemToDelete.name}"</strong>?
                 {itemToDelete.type === 'LEAVE_TYPE' && (
                   <span className="block mt-1 text-[11px] text-amber-800 bg-amber-50 p-2 rounded-lg border border-amber-200">
                     If employee leave requests reference this policy, the system prevents accidental deletion; you can deactivate it instead.
@@ -1642,14 +1642,14 @@ export const HRManagement: React.FC<HRManagementProps> = ({ defaultTab = 'DEPART
               <button
                 type="button"
                 onClick={() => setItemToDelete(null)}
-                className="w-full px-4 py-2 border border-[#E2E8F0] rounded-xl text-xs font-semibold text-[#64748B] hover:bg-slate-50 transition"
+                className="w-full px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-50 transition"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={executeDelete}
-                className="w-full px-4 py-2 bg-[#EF4444] hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
+                className="w-full px-4 py-2 bg-rose-600 hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-xs transition active:scale-95"
               >
                 Delete
               </button>

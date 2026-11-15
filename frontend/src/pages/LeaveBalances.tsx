@@ -37,12 +37,18 @@ export const LeaveBalances: React.FC = () => {
 
   useEffect(() => {
     if (isManagerOrAdmin) {
-      apiClient.get('/users/').then((res) => {
-        setTeamMembers(res.data.results || res.data || []);
-      }).catch(() => { });
-      apiClient.get('/leave/types/').then((res) => {
-        setLeaveTypes(res.data.results || res.data || []);
-      }).catch(() => { });
+      apiClient
+        .get('/users/')
+        .then((res) => {
+          setTeamMembers(res.data.results || res.data || []);
+        })
+        .catch(() => {});
+      apiClient
+        .get('/leave/types/')
+        .then((res) => {
+          setLeaveTypes(res.data.results || res.data || []);
+        })
+        .catch(() => {});
     }
   }, [isManagerOrAdmin]);
 
@@ -88,11 +94,11 @@ export const LeaveBalances: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Card */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Leave Quotas & Carry-Forward Balances</h1>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Leave Quotas & Balances</h1>
           <p className="text-xs text-slate-500 mt-1">
-            Overview of fresh annual allowances, unused carry-forward leaves from previous year, and active available balances.
+            Overview of annual allowances, carry-forward leaves from previous year, and active available balances.
           </p>
         </div>
 
@@ -104,7 +110,7 @@ export const LeaveBalances: React.FC = () => {
                 setAllocError(null);
                 setShowAllocateModal(true);
               }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-2xs transition active:scale-95"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-98 text-white text-xs font-bold shadow-xs transition cursor-pointer"
             >
               <Settings className="w-3.5 h-3.5" />
               <span>Allocate Balance</span>
@@ -112,12 +118,12 @@ export const LeaveBalances: React.FC = () => {
           )}
 
           {isManagerOrAdmin && (
-            <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200">
+            <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-300">
               <Users className="w-3.5 h-3.5 text-slate-400" />
               <select
                 value={selectedEmployeeId}
                 onChange={(e) => setSelectedEmployeeId(e.target.value)}
-                className="text-xs text-slate-700 bg-transparent focus:outline-none font-medium cursor-pointer"
+                className="text-xs text-slate-800 bg-transparent focus:outline-none font-semibold cursor-pointer"
               >
                 <option value="">All Visible Employees</option>
                 {teamMembers.map((m) => (
@@ -129,7 +135,7 @@ export const LeaveBalances: React.FC = () => {
             </div>
           )}
 
-          <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200">
+          <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-300">
             <Calendar className="w-3.5 h-3.5 text-slate-400" />
             <select
               value={year}
@@ -148,14 +154,14 @@ export const LeaveBalances: React.FC = () => {
 
       {/* Success Alert */}
       {allocSuccess && (
-        <div className="p-4 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-2xl text-xs flex items-center justify-between animate-in fade-in duration-200">
+        <div className="p-4 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-xl text-xs flex items-center justify-between animate-in fade-in duration-200">
           <div className="flex items-center gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span className="font-medium">{allocSuccess}</span>
+            <span className="font-semibold text-emerald-900">{allocSuccess}</span>
           </div>
           <button
             onClick={() => setAllocSuccess(null)}
-            className="text-emerald-700 hover:text-emerald-900 font-bold ml-4"
+            className="text-emerald-700 hover:text-emerald-950 font-bold ml-4 cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -163,10 +169,12 @@ export const LeaveBalances: React.FC = () => {
       )}
 
       {/* Corporate Policy Note Card */}
-      <div className="bg-indigo-50/60 border border-indigo-100 rounded-2xl p-4 flex items-start gap-3">
-        <Info className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
-        <div className="text-xs text-indigo-900 leading-relaxed">
-          <span className="font-bold">Software Office Policy: </span>
+      <div className="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 flex items-start gap-3">
+        <div className="w-7 h-7 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 mt-0.5">
+          <Info className="w-4 h-4" />
+        </div>
+        <div className="text-xs text-slate-700 leading-relaxed">
+          <span className="font-bold text-slate-900">Standard Corporate Policy: </span>
           Full-time engineering staff can carry forward up to <strong>5.0 unused annual leave days</strong> into the new calendar year. Carried-over days are automatically aggregated into your total available quota and deducted before new annual allowances.
         </div>
       </div>
@@ -174,13 +182,15 @@ export const LeaveBalances: React.FC = () => {
       {loading ? (
         <div className="py-24 flex flex-col items-center justify-center gap-3">
           <div className="w-7 h-7 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs text-slate-400 font-medium">Fetching balance records...</span>
+          <span className="text-xs text-slate-400 font-semibold">Fetching balance records...</span>
         </div>
       ) : balances.length === 0 ? (
-        <div className="bg-white rounded-2xl p-12 text-center border border-slate-200/80 shadow-xs">
-          <WalletCards className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-          <p className="text-sm font-bold text-slate-800">No balances allocated for Year {year}</p>
-          <p className="text-xs text-slate-400 mt-1">
+        <div className="bg-white rounded-2xl p-12 text-center border border-slate-200/90 shadow-xs">
+          <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-400">
+            <WalletCards className="w-6 h-6" />
+          </div>
+          <p className="text-sm font-bold text-slate-900">No balances allocated for Year {year}</p>
+          <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
             Please ask HR Operations to allocate leave balances for this period.
           </p>
         </div>
@@ -197,7 +207,7 @@ export const LeaveBalances: React.FC = () => {
             return (
               <div
                 key={b.id}
-                className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:border-slate-300 transition flex flex-col justify-between"
+                className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2">
@@ -207,8 +217,8 @@ export const LeaveBalances: React.FC = () => {
                           {b.leave_type_code}
                         </span>
                         {carried > 0 && (
-                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md">
-                            <Sparkles className="w-2.5 h-2.5" />
+                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+                            <Sparkles className="w-2.5 h-2.5 text-emerald-600" />
                             +{carried} Carried Forward
                           </span>
                         )}
@@ -227,22 +237,22 @@ export const LeaveBalances: React.FC = () => {
                     <span className="text-3xl font-extrabold text-slate-900 tracking-tight">
                       {remaining}
                     </span>
-                    <span className="text-xs text-slate-400 font-medium">days available</span>
+                    <span className="text-xs text-slate-400 font-semibold">days available</span>
                   </div>
 
                   {/* Breakdown details */}
                   <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-[11px]">
                     <div className="flex justify-between text-slate-600">
                       <span>Annual Fresh Allowance:</span>
-                      <span className="font-semibold text-slate-800">{allocated} days</span>
+                      <span className="font-semibold text-slate-900">{allocated} days</span>
                     </div>
 
                     <div className="flex justify-between text-slate-600">
                       <span>Carried Forward from {year - 1}:</span>
-                      <span className="font-semibold text-emerald-700">+{carried} days</span>
+                      <span className="font-bold text-emerald-700">+{carried} days</span>
                     </div>
 
-                    <div className="flex justify-between text-slate-900 font-bold pt-1 border-t border-dashed border-slate-200">
+                    <div className="flex justify-between text-slate-900 font-bold pt-1.5 border-t border-dashed border-slate-200">
                       <span>Total Effective Quota:</span>
                       <span>{total} days</span>
                     </div>
@@ -256,7 +266,7 @@ export const LeaveBalances: React.FC = () => {
                         style={{ width: `${percentUsed}%` }}
                       />
                     </div>
-                    <div className="flex justify-between items-center text-[11px] text-slate-500 mt-1.5">
+                    <div className="flex justify-between items-center text-[11px] text-slate-500 mt-1.5 font-medium">
                       <span>{used} days consumed</span>
                       <span>{remaining} remaining</span>
                     </div>
@@ -264,12 +274,13 @@ export const LeaveBalances: React.FC = () => {
                 </div>
 
                 <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="text-slate-400 text-[11px]">Period: Year {b.year}</span>
+                  <span className="text-slate-400 text-[11px] font-medium">Period: Year {b.year}</span>
                   <span
-                    className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${remaining > 0
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                        : 'bg-slate-100 text-slate-500 border border-slate-200'
-                      }`}
+                    className={`text-[11px] font-bold px-2 py-0.5 rounded-md border ${
+                      remaining > 0
+                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                        : 'bg-slate-100 text-slate-500 border-slate-200'
+                    }`}
                   >
                     {remaining > 0 ? 'Active Quota' : 'Exhausted'}
                   </span>
@@ -282,8 +293,8 @@ export const LeaveBalances: React.FC = () => {
 
       {/* Allocation Modal for HR/Managers */}
       {showAllocateModal && (
-        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-100 animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
                 <h3 className="text-base font-bold text-slate-900">Allocate Quota & Carry-Forward</h3>
@@ -293,28 +304,28 @@ export const LeaveBalances: React.FC = () => {
               </div>
               <button
                 onClick={() => setShowAllocateModal(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {allocError && (
-              <div className="mt-3 p-3 bg-rose-50 text-rose-800 border border-rose-200 rounded-xl text-xs">
+              <div className="mt-3 p-3 bg-rose-50 text-rose-800 border border-rose-200 rounded-xl text-xs font-semibold">
                 {allocError}
               </div>
             )}
 
             <form onSubmit={handleAllocateSubmit} className="mt-4 space-y-3.5">
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Employee
                 </label>
                 <select
                   required
                   value={allocEmpId}
                   onChange={(e) => setAllocEmpId(Number(e.target.value))}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-slate-900"
                 >
                   <option value="">Select Employee...</option>
                   {teamMembers.map((e) => (
@@ -326,14 +337,14 @@ export const LeaveBalances: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                   Leave Category
                 </label>
                 <select
                   required
                   value={allocTypeId}
                   onChange={(e) => setAllocTypeId(Number(e.target.value))}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-slate-900"
                 >
                   <option value="">Select Category...</option>
                   {leaveTypes.map((t) => (
@@ -346,7 +357,7 @@ export const LeaveBalances: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                     Annual Quota (Days)
                   </label>
                   <input
@@ -355,12 +366,12 @@ export const LeaveBalances: React.FC = () => {
                     required
                     value={allocDays}
                     onChange={(e) => setAllocDays(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-slate-900"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1.5">
                     Carry-Forward (Days)
                   </label>
                   <input
@@ -369,7 +380,7 @@ export const LeaveBalances: React.FC = () => {
                     required
                     value={allocCarryForward}
                     onChange={(e) => setAllocCarryForward(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-slate-900"
                   />
                 </div>
               </div>
@@ -378,13 +389,13 @@ export const LeaveBalances: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowAllocateModal(false)}
-                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-50 transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-2xs transition active:scale-95"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition active:scale-95 cursor-pointer"
                 >
                   Save Allocation
                 </button>

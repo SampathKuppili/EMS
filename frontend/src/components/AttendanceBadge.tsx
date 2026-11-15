@@ -19,8 +19,8 @@ export const AttendanceBadge: React.FC<AttendanceBadgeProps> = ({ status, size =
       label: 'Half Day',
     },
     ON_LEAVE: {
-      bg: 'bg-blue-50 border-blue-200 text-blue-800',
-      dot: 'bg-blue-500',
+      bg: 'bg-sky-50 border-sky-200 text-sky-800',
+      dot: 'bg-sky-500',
       label: 'On Leave',
     },
     ABSENT: {
@@ -65,7 +65,7 @@ export const AttendanceBadge: React.FC<AttendanceBadgeProps> = ({ status, size =
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 font-medium rounded-full border ${current.bg} ${sizeClasses}`}
+      className={`inline-flex items-center gap-1.5 font-semibold rounded-md border ${current.bg} ${sizeClasses} tracking-tight select-none`}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${current.dot}`} />
       <span>{current.label}</span>

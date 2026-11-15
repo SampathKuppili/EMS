@@ -220,7 +220,7 @@ export const TeamCalendar: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Card */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-bold text-slate-900 tracking-tight">Team Leave Calendar</h1>
@@ -228,7 +228,7 @@ export const TeamCalendar: React.FC = () => {
               {currentDate.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-500 mt-0.5">
             Company-wide leave schedule, corporate public holidays, and departmental coverage.
           </p>
         </div>
@@ -238,7 +238,7 @@ export const TeamCalendar: React.FC = () => {
           {isAdminOrHR && (
             <button
               onClick={() => handleOpenAddHoliday()}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold shadow-2xs transition active:scale-95"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-xs transition active:scale-95"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Schedule Holiday</span>
@@ -247,15 +247,15 @@ export const TeamCalendar: React.FC = () => {
 
           <button
             onClick={goToToday}
-            className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition active:scale-95 shadow-2xs"
+            className="px-3.5 py-2 rounded-lg border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition active:scale-95 shadow-xs bg-white"
           >
             Today
           </button>
 
-          <div className="flex items-center bg-slate-50 rounded-xl border border-slate-200 p-0.5">
+          <div className="flex items-center bg-slate-50 rounded-lg border border-slate-200 p-0.5">
             <button
               onClick={prevMonth}
-              className="p-1.5 hover:bg-white rounded-lg text-slate-600 hover:text-slate-900 transition shadow-2xs"
+              className="p-1.5 hover:bg-white rounded-md text-slate-600 hover:text-slate-900 transition shadow-xs"
               aria-label="Previous month"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -265,7 +265,7 @@ export const TeamCalendar: React.FC = () => {
             </span>
             <button
               onClick={nextMonth}
-              className="p-1.5 hover:bg-white rounded-lg text-slate-600 hover:text-slate-900 transition shadow-2xs"
+              className="p-1.5 hover:bg-white rounded-md text-slate-600 hover:text-slate-900 transition shadow-xs"
               aria-label="Next month"
             >
               <ChevronRight className="w-4 h-4" />
@@ -276,7 +276,7 @@ export const TeamCalendar: React.FC = () => {
 
       {/* Success / Error Alerts */}
       {holidaySuccess && (
-        <div className="p-4 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-2xl text-xs flex items-center justify-between animate-in fade-in duration-200">
+        <div className="p-3.5 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-xl text-xs flex items-center justify-between animate-in fade-in duration-200">
           <div className="flex items-center gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="font-medium">{holidaySuccess}</span>
@@ -292,12 +292,12 @@ export const TeamCalendar: React.FC = () => {
 
       {/* Legend & Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5">
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
+        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
             <Users className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
               Team Away
             </span>
             <span className="text-lg font-bold text-slate-900">
@@ -306,12 +306,12 @@ export const TeamCalendar: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 shrink-0">
+        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 shrink-0">
             <CalendarDays className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
               Holidays This Month
             </span>
             <span className="text-lg font-bold text-slate-900">
@@ -320,7 +320,7 @@ export const TeamCalendar: React.FC = () => {
           </div>
         </div>
 
-        <div className="md:col-span-2 bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs flex items-center justify-between">
+        <div className="md:col-span-2 bg-white rounded-xl border border-slate-200 p-4 shadow-xs flex items-center justify-between">
           <div className="flex flex-wrap items-center gap-3 text-xs">
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100" />
@@ -335,7 +335,7 @@ export const TeamCalendar: React.FC = () => {
               <span className="font-semibold text-slate-700">Public Holiday</span>
             </div>
           </div>
-          <span className="hidden sm:inline-flex text-[11px] text-slate-400 items-center gap-1">
+          <span className="hidden sm:inline-flex text-[11px] text-slate-500 items-center gap-1">
             <Info className="w-3.5 h-3.5 text-slate-400" />
             Click any cell to inspect
           </span>
@@ -343,7 +343,7 @@ export const TeamCalendar: React.FC = () => {
       </div>
 
       {/* Main Calendar Card Grid */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
+      <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
         {loading ? (
           <div className="py-24 flex flex-col items-center justify-center gap-3">
             <div className="w-7 h-7 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin" />
@@ -461,7 +461,7 @@ export const TeamCalendar: React.FC = () => {
       {/* Interactive Day Details Modal */}
       {selectedDayEvents && (
         <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl border border-slate-100 space-y-4 animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white rounded-xl max-w-lg w-full p-6 shadow-xl border border-slate-200 space-y-4 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
                 <CalendarIcon className="w-4 h-4 text-indigo-600" />
@@ -491,7 +491,7 @@ export const TeamCalendar: React.FC = () => {
                 {selectedDayEvents.holidays.map((h) => (
                   <div
                     key={h.id}
-                    className="p-3 bg-purple-50/70 border border-purple-200/70 rounded-xl flex items-start justify-between gap-3"
+                    className="p-3 bg-purple-50/70 border border-purple-200/70 rounded-lg flex items-start justify-between gap-3"
                   >
                     <div className="flex items-start gap-2.5">
                       <Palmtree className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
@@ -528,7 +528,7 @@ export const TeamCalendar: React.FC = () => {
 
             {/* Leave Absences Section */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                 Team Absences ({selectedDayEvents.events.length})
               </span>
 
@@ -541,7 +541,7 @@ export const TeamCalendar: React.FC = () => {
                   {selectedDayEvents.events.map((ev) => (
                     <div
                       key={ev.id}
-                      className="p-3 rounded-xl border border-slate-200/80 bg-slate-50/50 flex items-center justify-between gap-3"
+                      className="p-3 rounded-lg border border-slate-200 bg-slate-50/50 flex items-center justify-between gap-3"
                     >
                       <div>
                         <p className="text-xs font-bold text-slate-900">{ev.employee_name}</p>
@@ -563,7 +563,7 @@ export const TeamCalendar: React.FC = () => {
               {isAdminOrHR && selectedDayEvents.holidays.length === 0 ? (
                 <button
                   onClick={() => handleOpenAddHoliday(selectedDayEvents.dateStr)}
-                  className="inline-flex items-center gap-1.5 text-xs text-purple-700 hover:text-purple-900 font-semibold"
+                  className="inline-flex items-center gap-1.5 text-xs text-indigo-600 hover:text-indigo-800 font-semibold"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Schedule Holiday on this day</span>
@@ -574,7 +574,7 @@ export const TeamCalendar: React.FC = () => {
 
               <button
                 onClick={() => setSelectedDayEvents(null)}
-                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition"
               >
                 Close
               </button>
@@ -586,14 +586,14 @@ export const TeamCalendar: React.FC = () => {
       {/* Holiday Add / Edit Modal */}
       {showHolidayModal && (
         <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-100 animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
                 <h3 className="text-base font-bold text-slate-900">
                   {editingHoliday ? 'Edit Corporate Holiday' : 'Schedule Public Holiday'}
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  Admin CRUD: Manage company holiday calendar.
+                  Manage company holiday calendar.
                 </p>
               </div>
               <button
@@ -605,7 +605,7 @@ export const TeamCalendar: React.FC = () => {
             </div>
 
             {holidayError && (
-              <div className="mt-3 p-3 bg-rose-50 text-rose-800 border border-rose-200 rounded-xl text-xs">
+              <div className="mt-3 p-3 bg-rose-50 text-rose-800 border border-rose-200 rounded-lg text-xs">
                 {holidayError}
               </div>
             )}
@@ -621,7 +621,7 @@ export const TeamCalendar: React.FC = () => {
                   placeholder="e.g. Thanksgiving Day"
                   value={holidayName}
                   onChange={(e) => setHolidayName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
                 />
               </div>
 
@@ -634,7 +634,7 @@ export const TeamCalendar: React.FC = () => {
                   required
                   value={holidayDate}
                   onChange={(e) => setHolidayDate(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
                 />
               </div>
 
@@ -647,7 +647,7 @@ export const TeamCalendar: React.FC = () => {
                   placeholder="e.g. Corporate paid public holiday"
                   value={holidayDescription}
                   onChange={(e) => setHolidayDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
                 />
               </div>
 
@@ -655,13 +655,13 @@ export const TeamCalendar: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowHolidayModal(false)}
-                  className="px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
+                  className="px-4 py-2 border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold rounded-xl shadow-2xs transition active:scale-95"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg shadow-xs transition active:scale-95"
                 >
                   {editingHoliday ? 'Update Holiday' : 'Save Holiday'}
                 </button>

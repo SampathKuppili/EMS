@@ -196,7 +196,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {onToggleMobileSidebar && (
             <button
               onClick={onToggleMobileSidebar}
-              className="md:hidden p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition"
+              className="md:hidden p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition cursor-pointer"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
