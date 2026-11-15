@@ -65,7 +65,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   useEffect(() => {
     fetchNavbarAttendance();
     const interval = setInterval(fetchNavbarAttendance, 30000);
-    return () => clearInterval(interval);
+    const handleAttendanceUpdate = () => {
+      fetchNavbarAttendance();
+    };
+    window.addEventListener('attendance-updated', handleAttendanceUpdate);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('attendance-updated', handleAttendanceUpdate);
+    };
   }, []);
 
   // Timer counter when checked in
@@ -89,6 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     try {
       await apiClient.post('/attendance/check-in/', { notes: 'Punched in via top header' });
       await fetchNavbarAttendance();
+      window.dispatchEvent(new CustomEvent('attendance-updated'));
     } catch (err: any) {
       alert(err.response?.data?.detail || 'Failed to check in.');
     } finally {
@@ -102,6 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     try {
       await apiClient.post('/attendance/check-out/', { notes: 'Punched out via top header' });
       await fetchNavbarAttendance();
+      window.dispatchEvent(new CustomEvent('attendance-updated'));
     } catch (err: any) {
       alert(err.response?.data?.detail || 'Failed to check out.');
     } finally {
@@ -215,7 +224,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
 
             {/* Prominent Check Out Button when user is checked in */}
-            {canCheckOut && (
+            {canCheckOut && isCheckedIn && (
               <button
                 id="navbar-checkout-btn"
                 onClick={handleQuickCheckOut}
@@ -235,7 +244,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
 
             {/* Check In Button when user can check in */}
-            {canCheckIn && (
+            {canCheckIn && !isCheckedIn && !isCompleted && (
               <button
                 onClick={handleQuickCheckIn}
                 disabled={punchLoading}

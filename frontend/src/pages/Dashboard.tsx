@@ -105,6 +105,25 @@ export const Dashboard: React.FC = () => {
     fetchDashboardData();
   }, [user, isHR, isManager]);
 
+  const refreshHRAnalytics = async () => {
+    try {
+      const res = await apiClient.get('/reports/hr-dashboard/');
+      if (res?.data) {
+        setAnalytics(res.data);
+      }
+    } catch {
+      // quiet fallback
+    }
+  };
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      refreshHRAnalytics();
+    };
+    window.addEventListener('attendance-updated', handleUpdate);
+    return () => window.removeEventListener('attendance-updated', handleUpdate);
+  }, []);
+
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center py-32 space-y-3">
@@ -245,7 +264,7 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* Real-time Attendance & Punch Timing Card with Check In & Check Out */}
-      <AttendancePunchWidget />
+      <AttendancePunchWidget onStatusChange={refreshHRAnalytics} />
 
       {/* 2. DASHBOARD VIEW SELECTOR TABS */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-2">
