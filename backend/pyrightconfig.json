@@ -1,0 +1,7 @@
+{
+  "extraPaths": [
+    "."
+  ],
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none"
+}
