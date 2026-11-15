@@ -14,7 +14,9 @@ class EmployeeProfileInline(admin.StackedInline):
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     inlines = (EmployeeProfileInline,)
+    # pyrefly: ignore[bad-override-mutable-attribute]
     list_display = ('email', 'full_name', 'role', 'is_staff', 'is_active', 'date_joined')
+    # pyrefly: ignore[bad-override-mutable-attribute]
     list_filter = ('role', 'is_staff', 'is_active')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
