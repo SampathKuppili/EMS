@@ -171,7 +171,7 @@ export const ApplyLeave: React.FC = () => {
           <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs space-y-6">
             {/* Category Selector */}
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
+              <label className="block text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider mb-2.5">
                 Leave Category
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -184,21 +184,21 @@ export const ApplyLeave: React.FC = () => {
                     <div
                       key={type.id}
                       onClick={() => setSelectedTypeId(type.id)}
-                      className={`p-3.5 rounded-xl border text-left cursor-pointer transition ${
+                      className={`p-4 rounded-xl border text-left cursor-pointer transition ${
                         isSelected
-                          ? 'border-indigo-600 bg-indigo-50/50 ring-1 ring-indigo-600 shadow-2xs'
+                          ? 'border-indigo-600 bg-indigo-50/50 ring-2 ring-indigo-600 shadow-2xs'
                           : 'border-slate-200 hover:border-slate-300 bg-white'
                       }`}
                     >
                       <div className="flex justify-between items-start">
-                        <span className="font-bold text-xs text-slate-900">{type.name}</span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">
+                        <span className="font-bold text-sm text-slate-900">{type.name}</span>
+                        <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">
                           {type.code}
                         </span>
                       </div>
-                      <p className="text-[11px] text-slate-500 mt-1 line-clamp-1">{type.description}</p>
-                      <div className="mt-2.5 flex items-center justify-between text-[11px]">
-                        <span className="text-slate-400">Available:</span>
+                      <p className="text-xs text-slate-500 mt-1 line-clamp-1">{type.description}</p>
+                      <div className="mt-3 flex items-center justify-between text-xs">
+                        <span className="text-slate-500 font-medium">Available:</span>
                         <span className={`font-bold ${remaining > 0 ? 'text-slate-900' : 'text-rose-600'}`}>
                           {remaining}d
                         </span>
@@ -210,14 +210,14 @@ export const ApplyLeave: React.FC = () => {
             </div>
 
             {/* Half-Day Switch Card */}
-            <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500">
-                  <Clock className="w-4 h-4" />
+            <div className="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 shadow-2xs">
+                  <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900">Half-day leave</p>
-                  <p className="text-[11px] text-slate-500">Apply for 0.5 working day on a single date</p>
+                  <p className="text-sm font-bold text-slate-900">Half-day leave</p>
+                  <p className="text-xs text-slate-500">Apply for 0.5 working day on a single date</p>
                 </div>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
@@ -227,14 +227,14 @@ export const ApplyLeave: React.FC = () => {
                   onChange={(e) => setIsHalfDay(e.target.checked)}
                   className="sr-only peer"
                 />
-                <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" />
+                <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600" />
               </label>
             </div>
 
             {/* Dates Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider mb-2">
                   Start Date
                 </label>
                 <div className="relative">
@@ -243,13 +243,13 @@ export const ApplyLeave: React.FC = () => {
                     required
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 transition shadow-2xs"
+                    className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 transition shadow-2xs"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider mb-2">
                   End Date
                 </label>
                 <div className="relative">
@@ -259,7 +259,7 @@ export const ApplyLeave: React.FC = () => {
                     disabled={isHalfDay}
                     value={isHalfDay ? startDate : endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 disabled:bg-slate-100 disabled:text-slate-400 transition shadow-2xs"
+                    className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 disabled:bg-slate-100 disabled:text-slate-400 transition shadow-2xs"
                   />
                 </div>
               </div>
@@ -267,7 +267,7 @@ export const ApplyLeave: React.FC = () => {
 
             {/* Reason */}
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Reason / Remarks
               </label>
               <textarea
@@ -276,7 +276,7 @@ export const ApplyLeave: React.FC = () => {
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="Briefly describe the reason for your time off request..."
-                className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 transition shadow-2xs"
+                className="w-full px-4 py-3 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white text-slate-900 transition shadow-2xs"
               />
             </div>
           </div>

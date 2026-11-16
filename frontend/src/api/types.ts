@@ -281,3 +281,196 @@ export interface AttendanceSummary {
   total_work_hours: string;
   avg_work_hours_per_present_day: string;
 }
+
+// -------------------------------------------------------------
+// Document Management
+// -------------------------------------------------------------
+export type DocumentCategory =
+  | 'ID_PROOF'
+  | 'CONTRACT'
+  | 'CERTIFICATE'
+  | 'TAX_DOCUMENT'
+  | 'PAYSLIP'
+  | 'OTHER';
+
+export interface EmployeeDocument {
+  id: number;
+  employee: number;
+  employee_name: string;
+  employee_email: string;
+  employee_code?: string;
+  title: string;
+  category: DocumentCategory;
+  category_display?: string;
+  document_file: string;
+  file_url: string;
+  file_name?: string;
+  file_size_bytes?: number;
+  file_type?: string;
+  notes?: string;
+  expiry_date?: string | null;
+  uploaded_by: number;
+  uploaded_by_name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// -------------------------------------------------------------
+// Reimbursement Claims
+// -------------------------------------------------------------
+export type ReimbursementCategory =
+  | 'TRAVEL'
+  | 'MEALS'
+  | 'EQUIPMENT'
+  | 'OFFICE_SUPPLIES'
+  | 'TRAINING'
+  | 'HEALTH_WELLNESS'
+  | 'CLIENT_ENTERTAINMENT'
+  | 'OTHER';
+
+export type ReimbursementStatus = 'PENDING' | 'APPROVED' | 'REJECTED' | 'PAID';
+
+export interface ReimbursementClaim {
+  id: number;
+  claim_number: string;
+  employee: number;
+  employee_name: string;
+  employee_email: string;
+  employee_code?: string;
+  department_name?: string;
+  title: string;
+  category: ReimbursementCategory;
+  category_display?: string;
+  amount: string;
+  currency: string;
+  expense_date: string;
+  description: string;
+  merchant_name?: string;
+  receipt_file?: string;
+  receipt_url?: string;
+  status: ReimbursementStatus;
+  status_display?: string;
+  reviewed_by?: number | null;
+  reviewed_by_name?: string;
+  reviewed_at?: string | null;
+  rejection_reason?: string;
+  payment_reference?: string;
+  paid_at?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// -------------------------------------------------------------
+// Payroll, Tax & Payslip Management
+// -------------------------------------------------------------
+export type ComponentType = 'EARNING' | 'DEDUCTION';
+export type CalculationType = 'FIXED' | 'PERCENTAGE';
+export type PayFrequency = 'MONTHLY' | 'BIWEEKLY' | 'WEEKLY' | 'ANNUAL';
+export type TaxRegime = 'NEW_REGIME' | 'OLD_REGIME';
+export type PayslipStatus = 'DRAFT' | 'PUBLISHED' | 'PAID';
+export type PayslipTheme = 'MODERN_CLEAN' | 'CORPORATE_CLASSIC' | 'COMPACT_MINIMAL';
+
+export interface SalaryComponent {
+  id?: number;
+  salary_structure?: number;
+  name: string;
+  component_type: ComponentType;
+  calculation_type: CalculationType;
+  amount: string | number;
+  is_taxable: boolean;
+}
+
+export interface SalaryStructure {
+  id: number;
+  employee: number;
+  employee_name?: string;
+  employee_email?: string;
+  employee_code?: string;
+  department_name?: string;
+  currency: string;
+  base_salary: string | number;
+  pay_frequency: PayFrequency;
+  is_active: boolean;
+  effective_date: string;
+  components: SalaryComponent[];
+  total_earnings?: string | number;
+  total_deductions?: string | number;
+  estimated_net_salary?: string | number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface TaxDeduction {
+  id: number;
+  employee: number;
+  employee_name?: string;
+  employee_email?: string;
+  employee_code?: string;
+  tax_year: number;
+  tax_regime: TaxRegime;
+  pan_or_tax_id?: string;
+  tds_monthly_deduction: string | number;
+  declared_investments_80c: string | number;
+  declared_medical_80d: string | number;
+  declared_other_deductions: string | number;
+  total_declared_exemptions?: string | number;
+  notes?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface PayslipTemplate {
+  id: number;
+  name: string;
+  theme_code: PayslipTheme;
+  company_name: string;
+  company_address: string;
+  company_logo?: string | null;
+  logo_url?: string | null;
+  is_default: boolean;
+  accent_color: string;
+  footer_notes?: string;
+  show_attendance_metrics: boolean;
+  show_bank_details: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface PayslipBreakdownItem {
+  name: string;
+  amount: number;
+}
+
+export interface Payslip {
+  id: number;
+  payslip_number: string;
+  employee: number;
+  employee_name: string;
+  employee_email: string;
+  employee_code?: string;
+  department_name?: string;
+  designation?: string;
+  pan_or_tax_id?: string;
+  bank_name?: string;
+  bank_account_number?: string;
+  template?: number | null;
+  template_details?: PayslipTemplate | null;
+  month: number;
+  year: number;
+  payment_date: string;
+  currency: string;
+  basic_salary: string | number;
+  total_earnings: string | number;
+  total_deductions: string | number;
+  net_salary: string | number;
+  working_days: number;
+  paid_days: string | number;
+  status: PayslipStatus;
+  earnings_breakdown: PayslipBreakdownItem[];
+  deductions_breakdown: PayslipBreakdownItem[];
+  remarks?: string;
+  generated_by_name?: string;
+  created_at: string;
+  updated_at: string;
+}
+

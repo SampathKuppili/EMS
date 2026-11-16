@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'notifications.apps.NotificationsConfig',
     'reports.apps.ReportsConfig',
     'attendance.apps.AttendanceConfig',
+    'documents.apps.DocumentsConfig',
+    'reimbursements.apps.ReimbursementsConfig',
+    'payroll.apps.PayrollConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +135,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files (User uploaded documents, receipts, logos)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

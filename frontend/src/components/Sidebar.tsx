@@ -18,6 +18,9 @@ import {
   Briefcase,
   PanelLeftClose,
   PanelLeftOpen,
+  Receipt,
+  FileText,
+  DollarSign,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -69,6 +72,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
         { label: 'Apply for Leave', to: '/apply', icon: CalendarPlus },
         { label: 'My Requests', to: '/requests', icon: History },
         { label: 'Leave Balances', to: '/balances', icon: WalletCards },
+        { label: 'Reimbursements', to: '/reimbursements', icon: Receipt },
+        { label: 'Documents', to: '/documents', icon: FileText },
+        { label: 'Payroll & Payslips', to: '/payroll', icon: DollarSign },
       ],
     },
     ...(isManager

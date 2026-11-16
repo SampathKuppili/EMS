@@ -18,6 +18,9 @@ import { Profile } from './pages/Profile';
 import { Notifications } from './pages/Notifications';
 import { Reports } from './pages/Reports';
 import { Attendance } from './pages/Attendance';
+import { Reimbursements } from './pages/Reimbursements';
+import { Documents } from './pages/Documents';
+import { Payroll } from './pages/Payroll';
 
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useAuth();
@@ -80,7 +83,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           onRefreshNotifications={refreshBadges}
         />
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-[1720px] mx-auto">
           {children}
         </main>
       </div>
@@ -142,6 +145,36 @@ export const App: React.FC = () => {
               <ProtectedRoute>
                 <AppLayout>
                   <LeaveBalances />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reimbursements"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <Reimbursements />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/documents"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <Documents />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payroll"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <Payroll />
                 </AppLayout>
               </ProtectedRoute>
             }

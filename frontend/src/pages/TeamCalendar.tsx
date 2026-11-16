@@ -15,6 +15,7 @@ import {
   Edit2,
   Trash2,
   CheckCircle2,
+  RefreshCw,
 } from 'lucide-react';
 import { StatusBadge } from '../components/StatusBadge';
 
@@ -47,6 +48,7 @@ export const TeamCalendar: React.FC = () => {
   const [holidayDescription, setHolidayDescription] = useState<string>('');
   const [holidayError, setHolidayError] = useState<string | null>(null);
   const [holidaySuccess, setHolidaySuccess] = useState<string | null>(null);
+  const [isSavingHoliday, setIsSavingHoliday] = useState<boolean>(false);
 
   const isAdminOrHR = user?.role === 'ADMIN' || user?.role === 'HR_MANAGER' || user?.is_admin || user?.is_hr;
 
@@ -190,22 +192,63 @@ export const TeamCalendar: React.FC = () => {
     }
   };
 
+  const normalizeIsoDate = (dStr: string): string => {
+    if (!dStr) return '';
+    const trimmed = dStr.trim();
+    const dmyMatch = trimmed.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/);
+    if (dmyMatch) {
+      const [, day, month, year] = dmyMatch;
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    }
+    return trimmed;
+  };
+
+  const extractErrorMessage = (err: any, fallback: string): string => {
+    const data = err.response?.data;
+    if (!data) return err.message || fallback;
+    if (typeof data === 'string') return data;
+    if (data.detail && typeof data.detail === 'string') return data.detail;
+    if (data.message && typeof data.message === 'string') return data.message;
+    for (const key of Object.keys(data)) {
+      const val = data[key];
+      if (Array.isArray(val) && val.length > 0) {
+        return `${key !== 'non_field_errors' ? `${key}: ` : ''}${val[0]}`;
+      }
+      if (typeof val === 'string') {
+        return `${key}: ${val}`;
+      }
+    }
+    return fallback;
+  };
+
   const handleSaveHoliday = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSavingHoliday) return;
+
     setHolidayError(null);
+    setIsSavingHoliday(true);
+
+    const cleanDate = normalizeIsoDate(holidayDate);
+
+    if (!cleanDate || !/^\d{4}-\d{2}-\d{2}$/.test(cleanDate)) {
+      setHolidayError('Please select a valid date in YYYY-MM-DD format.');
+      setIsSavingHoliday(false);
+      return;
+    }
+
     try {
       if (editingHoliday) {
         await apiClient.patch(`/holidays/${editingHoliday.id}/`, {
-          date: holidayDate,
-          name: holidayName,
-          description: holidayDescription,
+          date: cleanDate,
+          name: holidayName.trim(),
+          description: holidayDescription.trim(),
         });
         setHolidaySuccess(`Holiday "${holidayName}" updated.`);
       } else {
         await apiClient.post('/holidays/', {
-          date: holidayDate,
-          name: holidayName,
-          description: holidayDescription,
+          date: cleanDate,
+          name: holidayName.trim(),
+          description: holidayDescription.trim(),
         });
         setHolidaySuccess(`Holiday "${holidayName}" added to calendar.`);
       }
@@ -213,7 +256,9 @@ export const TeamCalendar: React.FC = () => {
       setSelectedDayEvents(null);
       fetchCalendar();
     } catch (err: any) {
-      setHolidayError(err.response?.data?.detail || err.response?.data?.date?.[0] || 'Failed to save holiday.');
+      setHolidayError(extractErrorMessage(err, 'Failed to save holiday.'));
+    } finally {
+      setIsSavingHoliday(false);
     }
   };
 
@@ -586,33 +631,33 @@ export const TeamCalendar: React.FC = () => {
       {/* Holiday Add / Edit Modal */}
       {showHolidayModal && (
         <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-7 shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div>
-                <h3 className="text-base font-bold text-slate-900">
+                <h3 className="text-lg font-bold text-slate-900">
                   {editingHoliday ? 'Edit Corporate Holiday' : 'Schedule Public Holiday'}
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Manage company holiday calendar.
+                <p className="text-sm text-slate-500 mt-0.5">
+                  Manage company holiday calendar and scheduled non-working days.
                 </p>
               </div>
               <button
                 onClick={() => setShowHolidayModal(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition cursor-pointer"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
             {holidayError && (
-              <div className="mt-3 p-3 bg-rose-50 text-rose-800 border border-rose-200 rounded-lg text-xs">
+              <div className="mt-4 p-3.5 bg-rose-50 text-rose-800 border border-rose-200 rounded-xl text-sm">
                 {holidayError}
               </div>
             )}
 
-            <form onSubmit={handleSaveHoliday} className="mt-4 space-y-3.5">
+            <form onSubmit={handleSaveHoliday} className="mt-5 space-y-4">
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   Holiday Name
                 </label>
                 <input
@@ -621,12 +666,12 @@ export const TeamCalendar: React.FC = () => {
                   placeholder="e.g. Thanksgiving Day"
                   value={holidayName}
                   onChange={(e) => setHolidayName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+                  className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white shadow-2xs"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   Date
                 </label>
                 <input
@@ -634,12 +679,12 @@ export const TeamCalendar: React.FC = () => {
                   required
                   value={holidayDate}
                   onChange={(e) => setHolidayDate(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+                  className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white shadow-2xs"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   Description
                 </label>
                 <input
@@ -647,23 +692,26 @@ export const TeamCalendar: React.FC = () => {
                   placeholder="e.g. Corporate paid public holiday"
                   value={holidayDescription}
                   onChange={(e) => setHolidayDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+                  className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white shadow-2xs"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+              <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                 <button
                   type="button"
+                  disabled={isSavingHoliday}
                   onClick={() => setShowHolidayModal(false)}
-                  className="px-4 py-2 border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
+                  className="px-5 py-2.5 border border-slate-200 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-50 transition cursor-pointer disabled:opacity-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg shadow-xs transition active:scale-95"
+                  disabled={isSavingHoliday}
+                  className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm font-semibold rounded-xl shadow-xs transition active:scale-95 cursor-pointer inline-flex items-center gap-2"
                 >
-                  {editingHoliday ? 'Update Holiday' : 'Save Holiday'}
+                  {isSavingHoliday && <RefreshCw className="w-4 h-4 animate-spin" />}
+                  <span>{isSavingHoliday ? 'Saving...' : editingHoliday ? 'Update Holiday' : 'Save Holiday'}</span>
                 </button>
               </div>
             </form>
